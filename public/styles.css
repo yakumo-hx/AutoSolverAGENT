@@ -89,6 +89,7 @@ textarea {
 .stats div,
 .evidence-grid div,
 .monitor-cards div {
+  min-width: 0;
   padding: 12px;
   background: var(--panel-2);
   border: 2px solid #34415f;
@@ -107,25 +108,28 @@ textarea {
 .stats dd,
 .evidence-grid strong,
 .monitor-cards strong {
+  display: block;
   margin: 0;
   font-size: 18px;
   color: var(--text);
+  overflow-wrap: anywhere;
 }
 
 .hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.6fr) minmax(340px, 0.8fr);
   gap: 18px;
+  align-items: start;
   margin-top: 18px;
 }
 
 .scene {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 1.35fr 0.95fr;
-  grid-template-rows: minmax(210px, auto) minmax(210px, auto);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: 210px 210px;
   gap: 16px;
-  min-height: 486px;
+  min-height: 436px;
 }
 
 .panel {
@@ -278,12 +282,15 @@ textarea {
 .ledger-panel {
   grid-column: 1 / span 3;
   grid-row: 2;
+  overflow: hidden;
 }
 
 #ledgerList {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 10px;
+  max-height: 156px;
+  overflow: auto;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -345,6 +352,10 @@ textarea {
   gap: 14px;
 }
 
+.replay-panel .button {
+  width: 78px;
+}
+
 .button-row {
   display: flex;
   flex-wrap: wrap;
@@ -399,11 +410,21 @@ textarea {
 .evidence-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 96px;
   gap: 10px;
 }
 
+.evidence-grid div {
+  overflow: hidden;
+}
+
+.evidence-grid strong {
+  line-height: 1.25;
+}
+
 .reflection {
-  min-height: 180px;
+  height: 260px;
+  min-height: 0;
   overflow: auto;
   padding: 12px;
   color: #d9e2ff;
