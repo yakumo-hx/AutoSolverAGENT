@@ -1,0 +1,32 @@
+{
+  "agent_message": "基于最新反馈，v010（clean rollback）分数退化至906，表明v149的多骑手机制至关重要。下一轮假设：移除硬编码但保留多骑手组合和局部搜索，通过更严格的剪枝保持10/10完成。",
+  "version_name": "v151_clean_multi_guard",
+  "hypothesis": "在v149基础上移除所有硬编码固定映射，保留多骑手组合（multi_two_round_solution）和局部搜索，增加候选剪枝和超时保护，预期平均分接近712。",
+  "changes": [
+    "移除所有 hard_scarce_direct / hard_scarce_fast / hard_scarce_pre 等硬编码映射",
+    "恢复 multi_two_round_solution（多骑手组合）及其相关辅助函数",
+    "保留 tiny exact 分支（task_total<=6 的精确搜索）",
+    "增加全局超时保护：每 case 执行超过 9.5 秒时强制返回贪心基线",
+    "收紧 beam width 和节点限制以防止 timeout"
+  ],
+  "risk_notes": [
+    "多骑手组合在 large case（如 large_seed301）可能耗时增加，需通过 pruning 和限制迭代次数控制",
+    "移除硬编码后，原先靠硬编码得分的 case 可能分数上升，但预期多骑手能补偿大部分",
+    "超时保护若触发会回退到贪心解，可能使分数低于 best"
+  ],
+  "expected_effect": "平均分应接近 712.5276，所有 case 10/10 完成且不超时；low_willingness 和 scarce_couriers 改善明显。",
+  "reflection": "本轮生成在v149基础上移除硬编码，保留完整多骑手和局部搜索架构。主要改动是删除了所有hard_scarce_direct等固定映射，并将multi_two_round_solution作为主入口优先尝试。算法假设：多骑手组合能补偿硬编码带来的分数优势，同时保持10/10完成。风险在于large case可能耗时增加，但已通过beam width限制和节点保护来控制。预期平均分接近712。",
+  "next_user_action": "请复制 solver 上传平台；拿到平台结果或 F12 明细后粘贴反馈。",
+  "_runtime": {
+    "mock_mode": false,
+    "model": "deepseek-v4-flash",
+    "token_source": "env",
+    "monitor_id": "ds_20260607_222554_solver_generation",
+    "stream": true,
+    "elapsed_ms": 114613.6
+  },
+  "solver_sha256": "84480B1423732E9FB915EFF047792E32B6E24119915BF3E4D327C0AF45101BDF",
+  "saved_at": "2026-06-07T22:27:49+08:00",
+  "solver_code_chars": 75342,
+  "solver_code_sha256": "84480B1423732E9FB915EFF047792E32B6E24119915BF3E4D327C0AF45101BDF"
+}

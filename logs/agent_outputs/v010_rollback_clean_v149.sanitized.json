@@ -1,0 +1,30 @@
+{
+  "agent_message": "v008 平台反馈为 10/10 完成，但平均分 907.3511 未优于 best 712.5276；本轮保守回退到 clean v149 风格，等待重新评分验证。",
+  "version_name": "v010_rollback_clean_v149",
+  "hypothesis": "上一版不是 error/timeout，而是完整通过但分数退化；先用无硬编码的稳定回退版恢复基线。",
+  "changes": [
+    "移除所有硬编码固定映射（hard_scarce_direct/fast/pre 等）",
+    "保留 tiny exact 分支（task_total<=6 的精确搜索）",
+    "保留贪心排序、最小费用流、局部搜索等稳定组件",
+    "彻底删除 multi-courier 相关代码（如 multi_two_round_solution）"
+  ],
+  "risk_notes": [
+    "v010 是在旧解析文案下生成的回退候选，但 solver 代码本身通过语法、本地评测和硬编码审计。",
+    "平台真实分仍需重新提交验证；若低于 best，应继续拒绝并保留 v149。"
+  ],
+  "expected_effect": "平均分应接近 712.5276，完成率 10/10，所有 case 不超时。",
+  "reflection": "修正反馈解析后：v008_lab_20260607_220900 平台完成率为 10/10，平均分 907.3511，高于 best 712.5276，因此判定 not_better。v010 作为 clean rollback 候选，目标是恢复稳定性并避免固定 T/C 映射。",
+  "next_user_action": "请复制 solver 上传平台；拿到平台结果或 F12 明细后粘贴反馈。",
+  "_runtime": {
+    "mock_mode": false,
+    "model": "deepseek-v4-flash",
+    "token_source": "env",
+    "monitor_id": "ds_20260607_221417_solver_generation",
+    "stream": true,
+    "elapsed_ms": 79822.5
+  },
+  "solver_sha256": "A9CA163E77ABF6E572FC4CA20AC30718EAA164C1FF1528C538E414EEBDD0BA8B",
+  "saved_at": "2026-06-07T22:15:37+08:00",
+  "solver_code_chars": 43120,
+  "solver_code_sha256": "A9CA163E77ABF6E572FC4CA20AC30718EAA164C1FF1528C538E414EEBDD0BA8B"
+}

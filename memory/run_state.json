@@ -1,0 +1,166 @@
+{
+  "status": "PENDING_SUBMISSION",
+  "pending_version": "v151_clean_multi_guard",
+  "pending_solver_path": "solvers\\generated\\v151_clean_multi_guard.py",
+  "pending_created_at": "2026-06-07T22:27:49+08:00",
+  "last_event": "candidate_generated",
+  "chat": [
+    {
+      "role": "agent",
+      "content": "Mock 模式：未检测到 DEEPSEEK_API_KEY，因此复制当前 best solver，并生成一轮结构化候选。设置 DEEPSEEK_API_KEY 后会调用真实 DeepSeek。",
+      "time": "2026-06-07T19:48:31+08:00"
+    },
+    {
+      "role": "agent",
+      "content": "已放弃 pending Solver v005_agent_20260607_194831。文件仍保留在 solvers/generated 中。",
+      "time": "2026-06-07T21:16:47+08:00"
+    },
+    {
+      "role": "agent",
+      "content": "Agent Lab 已完成本地工具循环：生成候选、运行脱敏/合成 case、审计硬编码、选择 clean_multi_courier_guarded。",
+      "time": "2026-06-07T21:25:20+08:00"
+    },
+    {
+      "role": "agent",
+      "content": "Agent Lab 已完成本地工具循环：生成候选、运行脱敏/合成 case、审计硬编码、选择 clean_multi_courier_guarded。",
+      "time": "2026-06-07T21:25:54+08:00"
+    },
+    {
+      "role": "agent",
+      "content": "Agent Lab 已完成本地工具循环：生成候选、运行脱敏/合成 case、审计硬编码、选择 clean_multi_courier_guarded。",
+      "time": "2026-06-07T21:27:34+08:00"
+    },
+    {
+      "role": "agent",
+      "content": "Agent Lab 已完成本地工具循环：生成候选、运行脱敏/合成 case、审计硬编码、选择 clean_multi_courier_guarded。",
+      "time": "2026-06-07T21:28:12+08:00"
+    },
+    {
+      "role": "agent",
+      "content": "已放弃 pending Solver v006_lab_20260607_212431。文件仍保留在 solvers/generated 中。",
+      "time": "2026-06-07T21:31:31+08:00"
+    },
+    {
+      "role": "agent",
+      "content": "Agent Lab 已完成本地工具循环：生成候选、运行脱敏/合成 case、审计硬编码、选择 clean_multi_courier_guarded。",
+      "time": "2026-06-07T21:32:21+08:00"
+    },
+    {
+      "role": "agent",
+      "content": "针对低意愿多骑手选择和稀缺骑手指派优化，在不超时情况下改进平均分。",
+      "time": "2026-06-07T21:51:33+08:00"
+    },
+    {
+      "role": "agent",
+      "content": "Agent Lab 已完成本地工具循环：先请求策略建议，再生成候选、运行脱敏/合成 case、审计硬编码、选择 clean_multi_courier_guarded。",
+      "time": "2026-06-07T22:03:49+08:00"
+    },
+    {
+      "role": "agent",
+      "content": "已放弃 pending Solver v007_lab_20260607_213133。文件仍保留在 solvers/generated 中。",
+      "time": "2026-06-07T22:08:58+08:00"
+    },
+    {
+      "role": "agent",
+      "content": "Agent Lab 已完成本地工具循环：先请求策略建议，再生成候选、运行脱敏/合成 case、审计硬编码、选择 clean_multi_courier_guarded。",
+      "time": "2026-06-07T22:09:53+08:00"
+    },
+    {
+      "role": "user",
+      "content": "粘贴了 v008_lab_20260607_220900 平台反馈，解析 average=907.3511 completed=10/10",
+      "time": "2026-06-07T22:14:17+08:00"
+    },
+    {
+      "role": "agent",
+      "content": "v008_lab_20260607_220900 not_better: 平均分 907.3511 未优于当前 best 712.5276，不更新 best。",
+      "time": "2026-06-07T22:14:17+08:00"
+    },
+    {
+      "role": "agent",
+      "content": "修正解析后：v008 是 10/10 完成但平均分 907.3511 未优于 best；v010 为保守 clean rollback 候选。",
+      "time": "2026-06-07T22:15:37+08:00"
+    },
+    {
+      "role": "agent",
+      "content": "已修正 v008_lab_20260607_220900 的 F12 JSON 解析：完成率 10/10，不是 error/timeout；平均分 907.3511 未优于 best。",
+      "time": "2026-06-07T22:18:21+08:00"
+    },
+    {
+      "role": "user",
+      "content": "粘贴了 v010_rollback_clean_v149 平台反馈，解析 average=906.6899 completed=10/10",
+      "time": "2026-06-07T22:25:54+08:00"
+    },
+    {
+      "role": "agent",
+      "content": "v010_rollback_clean_v149 not_better: 平均分 906.6899 未优于当前 best 712.5276，不更新 best。",
+      "time": "2026-06-07T22:25:54+08:00"
+    },
+    {
+      "role": "agent",
+      "content": "基于最新反馈，v010（clean rollback）分数退化至906，表明v149的多骑手机制至关重要。下一轮假设：移除硬编码但保留多骑手组合和局部搜索，通过更严格的剪枝保持10/10完成。",
+      "time": "2026-06-07T22:27:49+08:00"
+    }
+  ],
+  "pending_sha256": "84480B1423732E9FB915EFF047792E32B6E24119915BF3E4D327C0AF45101BDF",
+  "latest_feedback": {
+    "version": "v010_rollback_clean_v149",
+    "average": 906.6899,
+    "completed": "10/10",
+    "decision": "not_better",
+    "reason": "平均分 906.6899 未优于当前 best 712.5276，不更新 best。",
+    "cases": {
+      "high_noise_seed601": {
+        "score": 703.6403,
+        "completion": "30/30",
+        "time_ms": 8643.0
+      },
+      "large_seed301": {
+        "score": 943.7877,
+        "completion": "40/40",
+        "time_ms": 8726.0
+      },
+      "large_seed302": {
+        "score": 905.4334,
+        "completion": "40/40",
+        "time_ms": 8150.0
+      },
+      "low_willingness_seed501": {
+        "score": 2272.6769,
+        "completion": "30/30",
+        "time_ms": 7119.0
+      },
+      "medium_seed201": {
+        "score": 683.9924,
+        "completion": "30/30",
+        "time_ms": 6965.0
+      },
+      "medium_seed202": {
+        "score": 752.6639,
+        "completion": "30/30",
+        "time_ms": 8045.0
+      },
+      "medium_seed203": {
+        "score": 709.0988,
+        "completion": "30/30",
+        "time_ms": 7533.0
+      },
+      "scarce_couriers_seed401": {
+        "score": 1544.4003,
+        "completion": "40/40",
+        "time_ms": 9544.0
+      },
+      "small_seed100": {
+        "score": 396.7962,
+        "completion": "15/15",
+        "time_ms": 3746.0
+      },
+      "tiny_seed42": {
+        "score": 154.4095,
+        "completion": "6/6",
+        "time_ms": 2064.0
+      }
+    },
+    "has_error_or_timeout": false,
+    "recorded_at": "2026-06-07T22:25:54+08:00"
+  }
+}

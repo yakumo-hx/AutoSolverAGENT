@@ -1,0 +1,30 @@
+{
+  "checks": [
+    {
+      "name": "python_compile_core",
+      "status": "passed"
+    },
+    {
+      "name": "local_synthetic_suite_best_solver",
+      "status": "passed",
+      "valid_cases": "5/5",
+      "timeout": false
+    },
+    {
+      "name": "local_synthetic_suite_v151",
+      "status": "passed",
+      "valid_cases": "5/5",
+      "timeout": false
+    },
+    {
+      "name": "secret_scan_regex",
+      "status": "passed",
+      "matches": 0
+    },
+    {
+      "name": "frontend_browser_check",
+      "status": "passed",
+      "note": "UI showed real DeepSeek/status/case data during local verification."
+    }
+  ]
+}

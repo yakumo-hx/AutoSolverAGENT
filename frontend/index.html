@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>智配探路者 | Pixel AutoSolver Agent</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="pixel-shell">
+      <header class="pixel-hud">
+        <div class="brand-block">
+          <span class="pixel-tag">AUTO SOLVER AGENT</span>
+          <h1>智配探路者</h1>
+        </div>
+        <dl class="hud-stats">
+          <div>
+            <dt>BEST</dt>
+            <dd id="bestScore">--</dd>
+          </div>
+          <div>
+            <dt>STATE</dt>
+            <dd id="agentState">--</dd>
+          </div>
+          <div>
+            <dt>STEP</dt>
+            <dd id="stepCounter">0/0</dd>
+          </div>
+          <div>
+            <dt>API</dt>
+            <dd id="traceStatus">LOCAL</dd>
+          </div>
+        </dl>
+      </header>
+
+      <section class="workbench-grid">
+        <section class="scene-board" id="sceneBoard" aria-label="像素 AutoSolver Agent 演示舞台">
+          <div class="pixel-panel agent-panel">
+            <div class="panel-title">AGENT 小精灵</div>
+            <div class="agent-dock" id="agentDock">
+              <div class="home-platform" aria-hidden="true"></div>
+            </div>
+            <div class="speech-box" id="message">正在读取本地记忆。</div>
+          </div>
+
+          <div class="pixel-panel basket-panel">
+            <div class="panel-title">算法篮子</div>
+            <div class="basket-grid" id="baskets">
+              <button class="pixel-basket basket-blue" data-name="greedy_low_cost">
+                <span class="basket-art" data-kind="cost"></span>
+                <strong>贪心篮</strong>
+                <small>greedy</small>
+              </button>
+              <button class="pixel-basket basket-green" data-name="flow_ilp">
+                <span class="basket-art" data-kind="will"></span>
+                <strong>流/ILP篮</strong>
+                <small>exact-ish</small>
+              </button>
+              <button class="pixel-basket basket-red" data-name="local_repair">
+                <span class="basket-art" data-kind="pair"></span>
+                <strong>修复篮</strong>
+                <small>repair</small>
+              </button>
+              <button class="pixel-basket basket-gold" data-name="memory_reflect">
+                <span class="basket-art" data-kind="explore"></span>
+                <strong>记忆篮</strong>
+                <small>reflect</small>
+              </button>
+            </div>
+          </div>
+
+          <div class="pixel-panel scale-panel">
+            <div class="panel-title">评分秤</div>
+            <div class="scale-rig" id="scaleDock">
+              <div class="scale-bar" id="scaleBar"></div>
+              <div class="scale-pan pan-left"></div>
+              <div class="scale-pan pan-right"></div>
+              <div class="scale-post"></div>
+            </div>
+            <div class="score-readout" id="scaleText">WAIT</div>
+          </div>
+
+          <aside class="pixel-panel ledger-panel" id="ledgerDock">
+            <div class="panel-title">长期记账本</div>
+            <ol class="ledger-list" id="ledgerList"></ol>
+          </aside>
+
+          <div class="fairy-layer" aria-hidden="true">
+            <div class="fairy-sprite" id="fairySprite">
+              <div class="pixel-art fairy-art" id="fairyArt"></div>
+              <div class="pixel-art carried-coin" id="carriedCoin"></div>
+            </div>
+          </div>
+        </section>
+
+        <aside class="pixel-panel agent-console">
+          <div class="panel-title">AGENT 控制台</div>
+          <div class="console-actions">
+            <button class="pixel-button primary" id="startAgentButton">开始</button>
+            <button class="pixel-button" id="strategyAdviceButton">建议</button>
+            <button class="pixel-button primary" id="labAgentButton">聪明</button>
+            <button class="pixel-button" id="liveAnimButton">实时</button>
+            <button class="pixel-button" id="demoAnimButton">回放</button>
+            <button class="pixel-button" id="copySolverButton">复制</button>
+            <button class="pixel-button danger" id="discardPendingButton">放弃</button>
+          </div>
+          <div class="session-notice" id="sessionNotice">READY</div>
+          <label class="field-label" for="deepseekTokenInput">DeepSeek Token（仅本页临时）</label>
+          <input class="token-input" id="deepseekTokenInput" type="password" autocomplete="off" spellcheck="false" placeholder="sk-... / 关闭或刷新后不保存" />
+          <div class="chat-log" id="chatLog"></div>
+          <label class="field-label" for="solverOutput">新版本 Solver</label>
+          <textarea class="code-box" id="solverOutput" spellcheck="false" readonly></textarea>
+          <label class="field-label" for="feedbackInput">平台/F12 反馈</label>
+          <textarea class="feedback-box" id="feedbackInput" spellcheck="false" placeholder="粘贴平台评分结果或 F12 JSON"></textarea>
+          <button class="pixel-button primary wide" id="sendFeedbackButton">发送反馈</button>
+        </aside>
+      </section>
+
+      <section class="control-panel">
+        <button class="pixel-button primary" id="playButton">播放全部</button>
+        <button class="pixel-button" id="nextButton">下一步</button>
+        <button class="pixel-button" id="resetButton">重置</button>
+        <div class="timeline" id="timeline"></div>
+      </section>
+
+      <section class="dashboard-grid">
+        <section class="pixel-panel chart-panel">
+          <div class="panel-title">分数曲线</div>
+          <div class="score-chart" id="scoreChart"></div>
+        </section>
+        <section class="pixel-panel version-panel">
+          <div class="panel-title">版本时间线</div>
+          <div class="version-list" id="versionList"></div>
+        </section>
+        <section class="pixel-panel case-panel">
+          <div class="panel-title">CASE 分数</div>
+          <div class="case-table-wrap">
+            <table class="case-table">
+              <thead>
+                <tr>
+                  <th>case</th>
+                  <th>score</th>
+                  <th>完成</th>
+                  <th>ms</th>
+                </tr>
+              </thead>
+              <tbody id="caseTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+        <section class="pixel-panel review-panel">
+          <div class="panel-title">反思 / 风险</div>
+          <div class="review-stack">
+            <div class="status-tile" id="errorTile">ERROR/TIMEOUT --</div>
+            <div class="reason-box" id="reasonBox">--</div>
+            <div class="reflection-box" id="reflectionBox">--</div>
+          </div>
+        </section>
+      </section>
+
+      <section class="pixel-panel ds-monitor-panel">
+        <div class="panel-title">DS 流式监控</div>
+        <div class="ds-monitor-grid">
+          <div class="monitor-card">
+            <span>STATUS</span>
+            <strong id="dsStatus">--</strong>
+          </div>
+          <div class="monitor-card">
+            <span>ELAPSED</span>
+            <strong id="dsElapsed">--</strong>
+          </div>
+          <div class="monitor-card">
+            <span>FIRST TOKEN</span>
+            <strong id="dsFirstToken">--</strong>
+          </div>
+          <div class="monitor-card">
+            <span>CHUNKS</span>
+            <strong id="dsChunks">--</strong>
+          </div>
+          <div class="monitor-card">
+            <span>CHARS</span>
+            <strong id="dsChars">--</strong>
+          </div>
+          <div class="monitor-card">
+            <span>USAGE</span>
+            <strong id="dsUsage">--</strong>
+          </div>
+          <div class="monitor-events" id="dsEvents"></div>
+          <pre class="stream-preview" id="dsPreview">等待 DeepSeek 调用。</pre>
+        </div>
+      </section>
+    </main>
+    <script src="pixel-assets.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

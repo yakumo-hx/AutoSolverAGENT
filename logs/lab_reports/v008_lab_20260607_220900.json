@@ -1,0 +1,575 @@
+{
+  "run_id": "v008_lab_20260607_220900",
+  "generated_at": "2026-06-07T22:09:53+08:00",
+  "suite": {
+    "case_count": 5,
+    "cases": [
+      {
+        "name": "sample_case",
+        "kind": "sample",
+        "task_count": 4,
+        "courier_count": 6,
+        "candidate_count": 10
+      },
+      {
+        "name": "synth_tiny_pair",
+        "kind": "tiny",
+        "task_count": 6,
+        "courier_count": 10,
+        "candidate_count": 41
+      },
+      {
+        "name": "synth_regular30",
+        "kind": "regular",
+        "task_count": 30,
+        "courier_count": 64,
+        "candidate_count": 415
+      },
+      {
+        "name": "synth_low_willingness",
+        "kind": "low_w",
+        "task_count": 24,
+        "courier_count": 58,
+        "candidate_count": 292
+      },
+      {
+        "name": "synth_scarce_couriers",
+        "kind": "scarce",
+        "task_count": 32,
+        "courier_count": 20,
+        "candidate_count": 211
+      }
+    ]
+  },
+  "strategy_advice": {
+    "agent_message": "基于最新分析，最大瓶颈为low_willingness_seed501和scarce_couriers_seed401。当前v149已稳定，下一步应针对这两个case采用轻量级局部搜索或CP-SAT子问题优化，避免超时，保持10/10完成。",
+    "version_name": "v150_ls_bottleneck",
+    "strategy_focus": "针对low_willingness和scarce_couriers的轻量级局部搜索与CP-SAT子问题",
+    "suggested_algorithms": [
+      "局部搜索（ejection chain）：在初始解基础上，对瓶颈case进行有限ejection chain迭代（最大50次，时间预算2秒）",
+      "约束CP-SAT子问题：仅对low_willingness和scarce_couriers中候选骑手较多的任务构建小型CP-SAT子问题（任务数≤20，骑手数≤10）",
+      "混合型beam search：在low_willingness中尝试窄光束（width≤5）且限制节点数≤5000"
+    ],
+    "experiment_plan": [
+      "在low_willingness_seed501上测试ejection chain（最大迭代50，时间预算2秒）",
+      "在scarce_couriers_seed401上测试CP-SAT子问题（只重分配候选骑手≥3的任务）",
+      "在large_seed301上验证时间不增加，确保不超过9秒",
+      "在tiny_seed42和small_seed100上回归验证分数不倒退"
+    ],
+    "guardrails": [
+      "任何新算法必须设置超时保护，超过9秒强制回退到当前基线v149",
+      "必须保持10/10完成，不引入硬编码或平台特例",
+      "不改变现有tiny exact 400k分支，仅对瓶颈case添加额外分支"
+    ],
+    "expected_effect": "将low_willingness_seed501从1800降至1600左右，scarce_couriers_seed401从1544降至1400左右，整体平均分降至700以下",
+    "rejected_options": [
+      "过重搜索（window_reoptimize、宽beam）因已失败",
+      "硬编码F12 detail",
+      "先固定case再优化（不稳定）",
+      "多骑手强制三骑手探针（已无效）"
+    ],
+    "next_solver_brief": "在v149基础上，对low_willingness和scarce_couriers分支添加ejection chain局部搜索，仅优化瓶颈任务-骑手对，并设置严格的时间预算；同时保留tiny exact 400k作为保底。",
+    "reflection": "当前爬坡艰难，需要在探索新方向的同时保持稳定性。low_willingness和scarce_couriers是主要分数拖累，可能需要对willingness建模更精细，比如考虑组合效应。同时要小心超时风险。",
+    "_runtime": {
+      "mock_mode": false,
+      "model": "deepseek-v4-flash",
+      "token_source": "env",
+      "env_files": [
+        "E:\\Python_project\\.env"
+      ],
+      "monitor_id": "ds_20260607_220900_strategy_advice",
+      "stream": true,
+      "elapsed_ms": 15538.0
+    },
+    "status": "completed"
+  },
+  "observations": [
+    {
+      "round": 1,
+      "name": "current_best_reference",
+      "source": "best_solver",
+      "average_score": 1035.088108518648,
+      "valid_cases": "5/5",
+      "max_runtime_ms": 372.1042000106536,
+      "hardcode_risk": "high",
+      "hardcoded_pair_count": 80,
+      "selection_score": 21035.08810851865
+    },
+    {
+      "round": 2,
+      "name": "clean_greedy_portfolio",
+      "source": "local_template",
+      "average_score": 1058.171143676,
+      "valid_cases": "5/5",
+      "max_runtime_ms": 25.95919999293983,
+      "hardcode_risk": "low",
+      "hardcoded_pair_count": 0,
+      "selection_score": 1058.171143676
+    },
+    {
+      "round": 3,
+      "name": "clean_pair_density",
+      "source": "local_template",
+      "average_score": 1058.171143676,
+      "valid_cases": "5/5",
+      "max_runtime_ms": 31.942800007527694,
+      "hardcode_risk": "low",
+      "hardcoded_pair_count": 0,
+      "selection_score": 1058.171143676
+    },
+    {
+      "round": 4,
+      "name": "clean_multi_courier_guarded",
+      "source": "local_template",
+      "average_score": 1043.1655694932774,
+      "valid_cases": "5/5",
+      "max_runtime_ms": 25.37399998982437,
+      "hardcode_risk": "low",
+      "hardcoded_pair_count": 0,
+      "selection_score": 1043.1655694932774
+    },
+    {
+      "round": 5,
+      "name": "v150_ls_bottleneck",
+      "source": "deepseek",
+      "average_score": 1079.3229650207118,
+      "valid_cases": "5/5",
+      "max_runtime_ms": 45.842999999877065,
+      "hardcode_risk": "low",
+      "hardcoded_pair_count": 0,
+      "selection_score": 1079.3229650207118
+    }
+  ],
+  "candidates": [
+    {
+      "round": 1,
+      "name": "current_best_reference",
+      "source": "best_solver",
+      "hypothesis": "当前 best 作为参照组；如果它赢但有硬编码，报告会明确标红。",
+      "path": "solvers\\lab\\v008_lab_20260607_220900\\01_current_best_reference.py",
+      "sha256": "766972C060513589B7D306499AD0828C2B5886181DCC2014F5197A6E0B531423",
+      "hardcode_audit": {
+        "explicit_pair_count": 80,
+        "unique_task_literal_count": 0,
+        "unique_courier_literal_count": 20,
+        "suspicious_name_count": 20,
+        "sample_pairs": [
+          "(\"T0025,T0028\", \"C006\")",
+          "(\"T0015,T0034\", \"C015\")",
+          "(\"T0007,T0021\", \"C017\")",
+          "(\"T0017,T0032\", \"C002\")",
+          "(\"T0031,T0036\", \"C008\")",
+          "(\"T0016,T0039\", \"C000\")",
+          "(\"T0005,T0035\", \"C019\")",
+          "(\"T0020,T0023\", \"C016\")"
+        ],
+        "risk": "high"
+      },
+      "evaluation": {
+        "solver_path": "E:\\Python_project\\Hackathon\\AutoSolverAgentShowcase\\solvers\\lab\\v008_lab_20260607_220900\\01_current_best_reference.py",
+        "case_count": 5,
+        "valid_cases": 5,
+        "average_score": 1035.088108518648,
+        "max_runtime_ms": 372.1042000106536,
+        "cases": [
+          {
+            "case": "sample_case",
+            "score": 192.3709090909091,
+            "valid": true,
+            "covered": 4,
+            "task_count": 4,
+            "candidate_count": 10,
+            "courier_count": 6,
+            "runtime_ms": 1.3223999994806945,
+            "errors": []
+          },
+          {
+            "case": "synth_tiny_pair",
+            "score": 310.17410615369465,
+            "valid": true,
+            "covered": 6,
+            "task_count": 6,
+            "candidate_count": 41,
+            "courier_count": 10,
+            "runtime_ms": 25.8107999979984,
+            "errors": []
+          },
+          {
+            "case": "synth_regular30",
+            "score": 1357.2149407773609,
+            "valid": true,
+            "covered": 30,
+            "task_count": 30,
+            "candidate_count": 415,
+            "courier_count": 64,
+            "runtime_ms": 365.88249998749234,
+            "errors": []
+          },
+          {
+            "case": "synth_low_willingness",
+            "score": 1502.6338736812743,
+            "valid": true,
+            "covered": 24,
+            "task_count": 24,
+            "candidate_count": 292,
+            "courier_count": 58,
+            "runtime_ms": 336.17269998649135,
+            "errors": []
+          },
+          {
+            "case": "synth_scarce_couriers",
+            "score": 1813.0467128899998,
+            "valid": true,
+            "covered": 29,
+            "task_count": 32,
+            "candidate_count": 211,
+            "courier_count": 20,
+            "runtime_ms": 372.1042000106536,
+            "errors": []
+          }
+        ],
+        "timeout": false
+      },
+      "selection_score": 21035.08810851865
+    },
+    {
+      "round": 2,
+      "name": "clean_greedy_portfolio",
+      "source": "local_template",
+      "hypothesis": "去掉固定 ID，使用多排序贪心组合和局部替换。",
+      "path": "solvers\\lab\\v008_lab_20260607_220900\\02_clean_greedy_portfolio.py",
+      "sha256": "E7200680D863319EE970D2587EB41BCD482E65F24ACD336F3FFD6309DBA5E758",
+      "hardcode_audit": {
+        "explicit_pair_count": 0,
+        "unique_task_literal_count": 0,
+        "unique_courier_literal_count": 0,
+        "suspicious_name_count": 0,
+        "sample_pairs": [],
+        "risk": "low"
+      },
+      "evaluation": {
+        "solver_path": "E:\\Python_project\\Hackathon\\AutoSolverAgentShowcase\\solvers\\lab\\v008_lab_20260607_220900\\02_clean_greedy_portfolio.py",
+        "case_count": 5,
+        "valid_cases": 5,
+        "average_score": 1058.171143676,
+        "max_runtime_ms": 25.95919999293983,
+        "cases": [
+          {
+            "case": "sample_case",
+            "score": 194.1,
+            "valid": true,
+            "covered": 4,
+            "task_count": 4,
+            "candidate_count": 10,
+            "courier_count": 6,
+            "runtime_ms": 0.4149999876972288,
+            "errors": []
+          },
+          {
+            "case": "synth_tiny_pair",
+            "score": 324.34807829000005,
+            "valid": true,
+            "covered": 6,
+            "task_count": 6,
+            "candidate_count": 41,
+            "courier_count": 10,
+            "runtime_ms": 1.79130001924932,
+            "errors": []
+          },
+          {
+            "case": "synth_regular30",
+            "score": 1259.30998546,
+            "valid": true,
+            "covered": 30,
+            "task_count": 30,
+            "candidate_count": 415,
+            "courier_count": 64,
+            "runtime_ms": 25.95919999293983,
+            "errors": []
+          },
+          {
+            "case": "synth_low_willingness",
+            "score": 1628.9344873199998,
+            "valid": true,
+            "covered": 24,
+            "task_count": 24,
+            "candidate_count": 292,
+            "courier_count": 58,
+            "runtime_ms": 13.08259999495931,
+            "errors": []
+          },
+          {
+            "case": "synth_scarce_couriers",
+            "score": 1884.1631673099998,
+            "valid": true,
+            "covered": 28,
+            "task_count": 32,
+            "candidate_count": 211,
+            "courier_count": 20,
+            "runtime_ms": 8.925899979658425,
+            "errors": []
+          }
+        ],
+        "timeout": false
+      },
+      "selection_score": 1058.171143676
+    },
+    {
+      "round": 3,
+      "name": "clean_pair_density",
+      "source": "local_template",
+      "hypothesis": "优先 pair/bundle 的收益密度，适合骑手较少或合单收益明显的 case。",
+      "path": "solvers\\lab\\v008_lab_20260607_220900\\03_clean_pair_density.py",
+      "sha256": "9BDD49CC2CDA2552EA0C81435E3DDC0912E0A1027EC347F7A6ACDD7D52D974BF",
+      "hardcode_audit": {
+        "explicit_pair_count": 0,
+        "unique_task_literal_count": 0,
+        "unique_courier_literal_count": 0,
+        "suspicious_name_count": 0,
+        "sample_pairs": [],
+        "risk": "low"
+      },
+      "evaluation": {
+        "solver_path": "E:\\Python_project\\Hackathon\\AutoSolverAgentShowcase\\solvers\\lab\\v008_lab_20260607_220900\\03_clean_pair_density.py",
+        "case_count": 5,
+        "valid_cases": 5,
+        "average_score": 1058.171143676,
+        "max_runtime_ms": 31.942800007527694,
+        "cases": [
+          {
+            "case": "sample_case",
+            "score": 194.1,
+            "valid": true,
+            "covered": 4,
+            "task_count": 4,
+            "candidate_count": 10,
+            "courier_count": 6,
+            "runtime_ms": 0.3954000130761415,
+            "errors": []
+          },
+          {
+            "case": "synth_tiny_pair",
+            "score": 324.34807829000005,
+            "valid": true,
+            "covered": 6,
+            "task_count": 6,
+            "candidate_count": 41,
+            "courier_count": 10,
+            "runtime_ms": 1.874100009445101,
+            "errors": []
+          },
+          {
+            "case": "synth_regular30",
+            "score": 1259.30998546,
+            "valid": true,
+            "covered": 30,
+            "task_count": 30,
+            "candidate_count": 415,
+            "courier_count": 64,
+            "runtime_ms": 31.942800007527694,
+            "errors": []
+          },
+          {
+            "case": "synth_low_willingness",
+            "score": 1628.9344873199998,
+            "valid": true,
+            "covered": 24,
+            "task_count": 24,
+            "candidate_count": 292,
+            "courier_count": 58,
+            "runtime_ms": 16.003899974748492,
+            "errors": []
+          },
+          {
+            "case": "synth_scarce_couriers",
+            "score": 1884.1631673099998,
+            "valid": true,
+            "covered": 28,
+            "task_count": 32,
+            "candidate_count": 211,
+            "courier_count": 20,
+            "runtime_ms": 12.20110000576824,
+            "errors": []
+          }
+        ],
+        "timeout": false
+      },
+      "selection_score": 1058.171143676
+    },
+    {
+      "round": 4,
+      "name": "clean_multi_courier_guarded",
+      "source": "local_template",
+      "hypothesis": "对低意愿单任务尝试 guarded multi-courier，提升完成概率。",
+      "path": "solvers\\lab\\v008_lab_20260607_220900\\04_clean_multi_courier_guarded.py",
+      "sha256": "7A9E1C0B4AB226D1B86A9220828B6476646C2BD7AB9AE8CE6CD590F675DF18B2",
+      "hardcode_audit": {
+        "explicit_pair_count": 0,
+        "unique_task_literal_count": 0,
+        "unique_courier_literal_count": 0,
+        "suspicious_name_count": 0,
+        "sample_pairs": [],
+        "risk": "low"
+      },
+      "evaluation": {
+        "solver_path": "E:\\Python_project\\Hackathon\\AutoSolverAgentShowcase\\solvers\\lab\\v008_lab_20260607_220900\\04_clean_multi_courier_guarded.py",
+        "case_count": 5,
+        "valid_cases": 5,
+        "average_score": 1043.1655694932774,
+        "max_runtime_ms": 25.37399998982437,
+        "cases": [
+          {
+            "case": "sample_case",
+            "score": 194.1,
+            "valid": true,
+            "covered": 4,
+            "task_count": 4,
+            "candidate_count": 10,
+            "courier_count": 6,
+            "runtime_ms": 0.44269999489188194,
+            "errors": []
+          },
+          {
+            "case": "synth_tiny_pair",
+            "score": 324.34807829000005,
+            "valid": true,
+            "covered": 6,
+            "task_count": 6,
+            "candidate_count": 41,
+            "courier_count": 10,
+            "runtime_ms": 2.004500012844801,
+            "errors": []
+          },
+          {
+            "case": "synth_regular30",
+            "score": 1227.0432617399451,
+            "valid": true,
+            "covered": 30,
+            "task_count": 30,
+            "candidate_count": 415,
+            "courier_count": 64,
+            "runtime_ms": 25.37399998982437,
+            "errors": []
+          },
+          {
+            "case": "synth_low_willingness",
+            "score": 1586.1733401264414,
+            "valid": true,
+            "covered": 22,
+            "task_count": 24,
+            "candidate_count": 292,
+            "courier_count": 58,
+            "runtime_ms": 12.297799985390157,
+            "errors": []
+          },
+          {
+            "case": "synth_scarce_couriers",
+            "score": 1884.1631673099998,
+            "valid": true,
+            "covered": 28,
+            "task_count": 32,
+            "candidate_count": 211,
+            "courier_count": 20,
+            "runtime_ms": 8.601399982580915,
+            "errors": []
+          }
+        ],
+        "timeout": false
+      },
+      "selection_score": 1043.1655694932774
+    },
+    {
+      "round": 5,
+      "name": "v150_ls_bottleneck",
+      "source": "deepseek",
+      "hypothesis": "对低意愿和稀缺骑手场景，通过小范围穷举多骑手组合（1~3人）并配合局部搜索，可以在不超时的情况下找到质量更高的解，从而降低平均惩罚分。",
+      "path": "solvers\\lab\\v008_lab_20260607_220900\\05_v150_ls_bottleneck.py",
+      "sha256": "989C9C805D32097C25364F95CCB7079CF249AC93918074F7740102E9EECE6FFF",
+      "hardcode_audit": {
+        "explicit_pair_count": 0,
+        "unique_task_literal_count": 0,
+        "unique_courier_literal_count": 0,
+        "suspicious_name_count": 0,
+        "sample_pairs": [],
+        "risk": "low"
+      },
+      "evaluation": {
+        "solver_path": "E:\\Python_project\\Hackathon\\AutoSolverAgentShowcase\\solvers\\lab\\v008_lab_20260607_220900\\05_v150_ls_bottleneck.py",
+        "case_count": 5,
+        "valid_cases": 5,
+        "average_score": 1079.3229650207118,
+        "max_runtime_ms": 45.842999999877065,
+        "cases": [
+          {
+            "case": "sample_case",
+            "score": 199.17949367088607,
+            "valid": true,
+            "covered": 4,
+            "task_count": 4,
+            "candidate_count": 10,
+            "courier_count": 6,
+            "runtime_ms": 0.4501999937929213,
+            "errors": []
+          },
+          {
+            "case": "synth_tiny_pair",
+            "score": 357.47682307,
+            "valid": true,
+            "covered": 6,
+            "task_count": 6,
+            "candidate_count": 41,
+            "courier_count": 10,
+            "runtime_ms": 2.80019998899661,
+            "errors": []
+          },
+          {
+            "case": "synth_regular30",
+            "score": 1282.4796040626736,
+            "valid": true,
+            "covered": 30,
+            "task_count": 30,
+            "candidate_count": 415,
+            "courier_count": 64,
+            "runtime_ms": 45.842999999877065,
+            "errors": []
+          },
+          {
+            "case": "synth_low_willingness",
+            "score": 1628.9344873199998,
+            "valid": true,
+            "covered": 24,
+            "task_count": 24,
+            "candidate_count": 292,
+            "courier_count": 58,
+            "runtime_ms": 30.96850001020357,
+            "errors": []
+          },
+          {
+            "case": "synth_scarce_couriers",
+            "score": 1928.54441698,
+            "valid": true,
+            "covered": 27,
+            "task_count": 32,
+            "candidate_count": 211,
+            "courier_count": 20,
+            "runtime_ms": 21.656299999449402,
+            "errors": []
+          }
+        ],
+        "timeout": false
+      },
+      "selection_score": 1079.3229650207118
+    }
+  ],
+  "chosen": {
+    "name": "clean_multi_courier_guarded",
+    "path": "solvers\\lab\\v008_lab_20260607_220900\\04_clean_multi_courier_guarded.py",
+    "sha256": "7A9E1C0B4AB226D1B86A9220828B6476646C2BD7AB9AE8CE6CD590F675DF18B2",
+    "selection_score": 1043.1655694932774,
+    "average_score": 1043.1655694932774,
+    "valid_cases": 5,
+    "case_count": 5,
+    "hardcoded_pair_count": 0
+  },
+  "policy": "优先选择本地 suite 全合法、无固定 Txxxx/Cxxx 映射、平均分低的候选。当前 suite 是脱敏/合成验证，不等价于平台隐藏分。"
+}

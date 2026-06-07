@@ -1,0 +1,28 @@
+# Reflection
+
+## Version
+v010_rollback_clean_v149
+
+## Decision
+not_better
+
+## Reason
+平均分 906.6899 未优于当前 best 712.5276，不更新 best。
+
+## Average
+906.6899
+
+## Completed
+10/10
+
+## Cases
+- high_noise_seed601: score=703.6403 completion=30/30 time_ms=8643.0
+- large_seed301: score=943.7877 completion=40/40 time_ms=8726.0
+- large_seed302: score=905.4334 completion=40/40 time_ms=8150.0
+- low_willingness_seed501: score=2272.6769 completion=30/30 time_ms=7119.0
+- medium_seed201: score=683.9924 completion=30/30 time_ms=6965.0
+- medium_seed202: score=752.6639 completion=30/30 time_ms=8045.0
+- medium_seed203: score=709.0988 completion=30/30 time_ms=7533.0
+- scarce_couriers_seed401: score=1544.4003 completion=40/40 time_ms=9544.0
+- small_seed100: score=396.7962 completion=15/15 time_ms=3746.0
+- tiny_seed42: score=154.4095 completion=6/6 time_ms=2064.0

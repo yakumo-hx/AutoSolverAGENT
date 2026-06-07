@@ -1,0 +1,175 @@
+{
+  "project": "AutoSolverAGENT",
+  "created_at": "2026-06-07T22:30:00+08:00",
+  "privacy": {
+    "api_key_committed": false,
+    "raw_feedback_committed": false,
+    "env_files_committed": false,
+    "notes": "Logs are sanitized; API tokens are accepted only at runtime or from a local .env outside the package."
+  },
+  "best_solver": {
+    "path": "solver/solver.py",
+    "average": 712.5276,
+    "completed": "10/10",
+    "version": "v149_probe_tiny_budget400k",
+    "standalone_submission": true,
+    "hardcode_audit_note": "Historical best is preserved as a standalone submission artifact; generated clean candidates are kept separately."
+  },
+  "current_pending_candidate": {
+    "version": "v151_clean_multi_guard",
+    "path": "solvers/generated/v151_clean_multi_guard.py",
+    "source_feedback": "v010_rollback_clean_v149",
+    "deepseek_run_id": "ds_20260607_222554_solver_generation"
+  },
+  "platform_feedbacks": [
+    {
+      "version": "v008_lab_20260607_220900",
+      "average": 907.3511,
+      "completed": "10/10",
+      "cases": {
+        "high_noise_seed601": {
+          "score": 715.0484,
+          "completion": "30/30",
+          "time_ms": 2830.0
+        },
+        "large_seed301": {
+          "score": 961.4757,
+          "completion": "40/40",
+          "time_ms": 2687.0
+        },
+        "large_seed302": {
+          "score": 913.3302,
+          "completion": "40/40",
+          "time_ms": 2635.0
+        },
+        "low_willingness_seed501": {
+          "score": 2102.2982,
+          "completion": "22/30",
+          "time_ms": 2134.0
+        },
+        "medium_seed201": {
+          "score": 690.5622,
+          "completion": "30/30",
+          "time_ms": 2024.0
+        },
+        "medium_seed202": {
+          "score": 764.2358,
+          "completion": "30/30",
+          "time_ms": 2242.0
+        },
+        "medium_seed203": {
+          "score": 720.4748,
+          "completion": "30/30",
+          "time_ms": 2155.0
+        },
+        "scarce_couriers_seed401": {
+          "score": 1588.9384,
+          "completion": "39/40",
+          "time_ms": 1045.0
+        },
+        "small_seed100": {
+          "score": 414.7386,
+          "completion": "15/15",
+          "time_ms": 505.0
+        },
+        "tiny_seed42": {
+          "score": 202.4085,
+          "completion": "6/6",
+          "time_ms": 88.0
+        }
+      },
+      "raw_length": 57440,
+      "has_error_or_timeout": false
+    },
+    {
+      "version": "v010_rollback_clean_v149",
+      "average": 906.6899,
+      "completed": "10/10",
+      "cases": {
+        "high_noise_seed601": {
+          "score": 703.6403,
+          "completion": "30/30",
+          "time_ms": 8643.0
+        },
+        "large_seed301": {
+          "score": 943.7877,
+          "completion": "40/40",
+          "time_ms": 8726.0
+        },
+        "large_seed302": {
+          "score": 905.4334,
+          "completion": "40/40",
+          "time_ms": 8150.0
+        },
+        "low_willingness_seed501": {
+          "score": 2272.6769,
+          "completion": "30/30",
+          "time_ms": 7119.0
+        },
+        "medium_seed201": {
+          "score": 683.9924,
+          "completion": "30/30",
+          "time_ms": 6965.0
+        },
+        "medium_seed202": {
+          "score": 752.6639,
+          "completion": "30/30",
+          "time_ms": 8045.0
+        },
+        "medium_seed203": {
+          "score": 709.0988,
+          "completion": "30/30",
+          "time_ms": 7533.0
+        },
+        "scarce_couriers_seed401": {
+          "score": 1544.4003,
+          "completion": "40/40",
+          "time_ms": 9544.0
+        },
+        "small_seed100": {
+          "score": 396.7962,
+          "completion": "15/15",
+          "time_ms": 3746.0
+        },
+        "tiny_seed42": {
+          "score": 154.4095,
+          "completion": "6/6",
+          "time_ms": 2064.0
+        }
+      },
+      "raw_length": 58335,
+      "has_error_or_timeout": false
+    }
+  ],
+  "feedback_to_generation": [
+    {
+      "platform_feedback_version": "v008_lab_20260607_220900",
+      "structured_feedback_path": "logs/structured_feedback/v008_lab_20260607_220900.json",
+      "decision": "not_better",
+      "deepseek_run_id": "ds_20260607_221417_solver_generation",
+      "generated_solver": "solvers/generated/v010_rollback_clean_v149.py",
+      "agent_output": "logs/agent_outputs/v010_rollback_clean_v149.sanitized.json"
+    },
+    {
+      "platform_feedback_version": "v010_rollback_clean_v149",
+      "structured_feedback_path": "logs/structured_feedback/v010_rollback_clean_v149.json",
+      "decision": "not_better",
+      "deepseek_run_id": "ds_20260607_222554_solver_generation",
+      "generated_solver": "solvers/generated/v151_clean_multi_guard.py",
+      "agent_output": "logs/agent_outputs/v151_clean_multi_guard.sanitized.json"
+    }
+  ],
+  "real_deepseek_runs_of_interest": [
+    "ds_20260607_221417_solver_generation",
+    "ds_20260607_222554_solver_generation"
+  ],
+  "frontend_evidence": {
+    "can_display_real_data": true,
+    "screenshot": "demo/screenshots/ds-flash-monitor.png",
+    "data_sources": [
+      "logs/score_history.json",
+      "logs/structured_feedback/*.json",
+      "logs/deepseek_runs_sanitized.json"
+    ]
+  }
+}
