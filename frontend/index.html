@@ -28,13 +28,13 @@
           </div>
           <div>
             <dt>API</dt>
-            <dd id="traceStatus">LOCAL</dd>
+            <dd id="traceStatus">WORKBENCH</dd>
           </div>
         </dl>
       </header>
 
       <section class="workbench-grid">
-        <section class="scene-board" id="sceneBoard" aria-label="像素 AutoSolver Agent 演示舞台">
+        <section class="scene-board" id="sceneBoard" aria-label="像素 AutoSolver Agent 工作区">
           <div class="pixel-panel agent-panel">
             <div class="panel-title">AGENT 小精灵</div>
             <div class="agent-dock" id="agentDock">
@@ -97,15 +97,15 @@
           <div class="panel-title">AGENT 控制台</div>
           <div class="console-actions">
             <button class="pixel-button primary" id="startAgentButton">开始</button>
-            <button class="pixel-button" id="strategyAdviceButton">建议</button>
-            <button class="pixel-button primary" id="labAgentButton">聪明</button>
+            <button class="pixel-button" id="strategyAdviceButton">策略</button>
+            <button class="pixel-button primary" id="labAgentButton">智能</button>
             <button class="pixel-button" id="liveAnimButton">实时</button>
             <button class="pixel-button" id="demoAnimButton">回放</button>
             <button class="pixel-button" id="copySolverButton">复制</button>
-            <button class="pixel-button danger" id="discardPendingButton">放弃</button>
+            <button class="pixel-button danger" id="discardPendingButton">移除</button>
           </div>
-          <div class="session-notice" id="sessionNotice">READY</div>
-          <label class="field-label" for="deepseekTokenInput">DeepSeek Token（仅本页临时）</label>
+          <div class="session-notice" id="sessionNotice">系统就绪</div>
+          <label class="field-label" for="deepseekTokenInput">DeepSeek Token（本页会话）</label>
           <input class="token-input" id="deepseekTokenInput" type="password" autocomplete="off" spellcheck="false" placeholder="sk-... / 关闭或刷新后不保存" />
           <div class="chat-log" id="chatLog"></div>
           <label class="field-label" for="solverOutput">新版本 Solver</label>
@@ -149,9 +149,9 @@
           </div>
         </section>
         <section class="pixel-panel review-panel">
-          <div class="panel-title">反思 / 风险</div>
+          <div class="panel-title">Agent 反思</div>
           <div class="review-stack">
-            <div class="status-tile" id="errorTile">ERROR/TIMEOUT --</div>
+            <div class="status-tile" id="errorTile">运行异常 --</div>
             <div class="reason-box" id="reasonBox">--</div>
             <div class="reflection-box" id="reflectionBox">--</div>
           </div>
@@ -186,7 +186,7 @@
             <strong id="dsUsage">--</strong>
           </div>
           <div class="monitor-events" id="dsEvents"></div>
-          <pre class="stream-preview" id="dsPreview">等待 DeepSeek 调用。</pre>
+          <pre class="stream-preview" id="dsPreview">DeepSeek 流准备就绪。</pre>
         </div>
       </section>
     </main>

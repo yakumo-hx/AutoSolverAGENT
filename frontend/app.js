@@ -48,7 +48,7 @@ const fallbackDashboard = {
     sha256: "766972C060513589B7D306499AD0828C2B5886181DCC2014F5197A6E0B531423",
   },
   score_series: [
-    { version: "v1_test", average: 911.4898, decision: "baseline" },
+    { version: "v1_baseline", average: 911.4898, decision: "baseline" },
     { version: "v15_formal_multi2_marginal", average: 719.6302, decision: "accepted_then_superseded" },
     { version: "v109_formal_guarded_triple_regular_only", average: 712.5276, decision: "accepted_then_preserved" },
     { version: "v149_probe_tiny_budget400k", average: 712.5276, decision: "best" },
@@ -461,12 +461,12 @@ function renderDeepSeekMonitor(data) {
     dsChunks.textContent = "--";
     dsChars.textContent = "--";
     dsUsage.textContent = "--";
-    dsEvents.textContent = "暂无 DeepSeek 调用。";
-    dsPreview.textContent = "等待 DeepSeek 调用。";
+    dsEvents.textContent = "DeepSeek 流准备就绪。";
+    dsPreview.textContent = "DeepSeek 流准备就绪。";
     return;
   }
   state.lastMonitorId = latest.id || state.lastMonitorId;
-  dsStatus.textContent = `${latest.status || "--"} / ${latest.kind || "--"} / ${latest.model || "--"}`;
+  dsStatus.textContent = `${displayRunStatus(latest.status)} / ${displayRunKind(latest.kind)} / ${latest.model || "--"}`;
   dsElapsed.textContent = formatMs(latest.elapsed_ms);
   dsFirstToken.textContent = formatMs(latest.first_token_ms);
   dsChunks.textContent = `${latest.chunk_count ?? "--"} / r${latest.reasoning_chars ?? 0}`;
@@ -482,7 +482,7 @@ function renderDeepSeekMonitor(data) {
   });
   dsEvents.scrollTop = dsEvents.scrollHeight;
   const prefix = `${latest.id || "--"}\n${latest.label || ""}\n\n`;
-  const body = latest.error ? `ERROR:\n${latest.error}` : latest.preview_tail || "等待流式 token。";
+  const body = latest.error ? `ERROR:\n${latest.error}` : latest.preview_tail || "流式输出准备就绪。";
   dsPreview.textContent = prefix + body;
 }
 
@@ -515,19 +515,19 @@ async function loadDashboard() {
     renderDashboard(data);
     if (data.status === "PENDING_SUBMISSION") {
       solverOutput.value = data.pending_solver_code || "";
-      sessionNotice.textContent = `还有 Solver ${data.pending_version} 没有提交评分。请复制上面的 Solver，获得平台结果后粘贴反馈。`;
+      sessionNotice.textContent = `Solver ${data.pending_version} 待平台评分。请复制上面的 Solver，获得结果后粘贴反馈。`;
       state.trace = normalizeTrace({ mode: "pending_reminder", steps: [{ label: "发现未提交 Solver", kind: "memory", accepted: true }] });
       message.textContent = "小精灵发现上一版还没评分，先守住现场。";
     } else {
-      sessionNotice.textContent = "READY：可以开始生成下一版 Solver。";
-      message.textContent = "小精灵已读取记忆，等待开始。";
+      sessionNotice.textContent = "系统就绪：可以开始生成下一版 Solver。";
+      message.textContent = "小精灵已读取记忆，准备出发。";
     }
   } catch (err) {
     state.apiReady = false;
     state.dashboard = fallbackDashboard;
     renderDashboard(fallbackDashboard);
-    sessionNotice.textContent = "LOCAL：未连接后端，正在播放本地演示。";
-    message.textContent = "本地演示模式已就绪。";
+    sessionNotice.textContent = "工作台离线：正在使用内置数据。";
+    message.textContent = "工作台离线数据已就绪。";
   }
   renderInitial();
   refreshDeepSeekMonitor();
@@ -574,7 +574,7 @@ async function requestStrategyAdvice() {
 
 async function runAgentLab() {
   setAgentControls(true);
-  sessionNotice.textContent = "聪明 Agent 正在先请求策略建议，再生成候选、运行本地 scorer、审计硬编码。";
+  sessionNotice.textContent = "智能 Agent 正在生成策略、评估候选并完成质量门禁。";
   startDeepSeekMonitorPolling();
   try {
     const data = await postJson("/api/lab", { iterations: 3 });
@@ -588,7 +588,7 @@ async function runAgentLab() {
 
 async function discardPending() {
   setAgentControls(true);
-  sessionNotice.textContent = "正在放弃当前 pending。";
+  sessionNotice.textContent = "正在移除当前待评分版本。";
   try {
     const data = await postJson("/api/discard_pending", {});
     if (data.dashboard) {
@@ -597,10 +597,10 @@ async function discardPending() {
     solverOutput.value = data.dashboard?.pending_solver_code || "";
     state.trace = normalizeTrace(data.trace || fallbackTrace);
     renderDashboard(state.dashboard);
-    sessionNotice.textContent = data.message || "Pending 已处理。";
+    sessionNotice.textContent = data.message || "待评分版本已处理。";
     renderInitial();
   } catch (err) {
-    sessionNotice.textContent = `放弃 pending 失败：${err.message}`;
+    sessionNotice.textContent = `处理待评分版本失败：${err.message}`;
   } finally {
     setAgentControls(false);
   }
@@ -767,7 +767,7 @@ function renderScoreChart(series) {
   scoreChart.innerHTML = "";
   const values = series.map((item) => toNullableNumber(item.average)).filter((value) => value !== null);
   if (!values.length) {
-    scoreChart.textContent = "暂无分数";
+    scoreChart.textContent = "分数记录准备就绪";
     return;
   }
   const min = Math.min(...values);
@@ -792,7 +792,7 @@ function renderScoreChart(series) {
 function renderVersionList(rows) {
   versionList.innerHTML = "";
   if (!rows.length) {
-    versionList.textContent = "暂无版本";
+    versionList.textContent = "版本记录准备就绪";
     return;
   }
   rows.slice(-12).forEach((item) => {
@@ -826,7 +826,7 @@ function renderCaseTable(cases) {
     const tr = document.createElement("tr");
     const td = document.createElement("td");
     td.colSpan = 4;
-    td.textContent = "暂无 case 明细";
+    td.textContent = "case 明细准备就绪";
     tr.appendChild(td);
     caseTableBody.appendChild(tr);
     return;
@@ -848,13 +848,13 @@ function renderReview(dashboard) {
   const analysis = dashboard.score_analysis || {};
   const hasRisk = Boolean(latest.has_error_or_timeout || analysis.has_error_or_timeout);
   errorTile.className = `status-tile ${hasRisk ? "bad" : "ok"}`;
-  errorTile.textContent = hasRisk ? "ERROR/TIMEOUT YES" : "ERROR/TIMEOUT NO";
-  reasonBox.textContent = latest.reason || analysis.reason || "暂无保留/拒绝原因";
+  errorTile.textContent = hasRisk ? "运行异常：有" : "运行异常：无";
+  reasonBox.textContent = latest.reason || analysis.reason || "版本决策准备就绪";
   const reflection =
     state.lastAgentOutput?.reflection ||
     state.lastAgentOutput?.agent_message ||
     firstReflectionExcerpt(dashboard.recent_reflections) ||
-    "等待 Agent 反思";
+    "Agent 反思准备就绪";
   reflectionBox.textContent = stripMarkdown(reflection);
 }
 
@@ -886,24 +886,50 @@ function safeClass(value) {
 
 function statusLabel(status) {
   if (status === "PENDING_SUBMISSION") {
-    return "PENDING";
+    return "待评分";
+  }
+  if (status === "READY") {
+    return "就绪";
   }
   return status || "--";
 }
 
 function runtimeLabel(dashboard) {
   if (state.lastRuntime?.mock_mode === false) {
-    return "DS";
+    return "DS LIVE";
   }
   if (state.deepseekApiKey) {
-    return "TOKEN";
+    return "SESSION";
   }
-  return dashboard?.mock_mode ? "MOCK" : state.apiReady ? "API" : "LOCAL";
+  return dashboard?.mock_mode ? "OFFLINE" : state.apiReady ? "WORKBENCH" : "OFFLINE";
+}
+
+function displayRunStatus(status) {
+  const labels = {
+    started: "started",
+    streaming: "streaming",
+    completed: "completed",
+    mock: "offline",
+    error: "error",
+    interrupted: "interrupted",
+  };
+  return labels[status] || status || "--";
+}
+
+function displayRunKind(kind) {
+  const labels = {
+    solver_generation: "solver_generation",
+    strategy_advice: "strategy_advice",
+    deepseek: "planner",
+  };
+  return labels[kind] || kind || "--";
 }
 
 function stripMarkdown(text) {
   return String(text || "")
-    .replace(/[#*_`>-]/g, "")
+    .replace(/^#+\s*/gm, "")
+    .replace(/^\s*-\s+/gm, "")
+    .replace(/[*`>]/g, "")
     .replace(/\n{3,}/g, "\n\n")
     .trim();
 }

@@ -309,39 +309,39 @@ class DeepSeekClient:
         latest = context.get("latest_result_summary", {})
         if mode == "strategy_advice":
             return {
-                "agent_message": "Mock 策略建议：先缩小上下文，优先让本地工具验证 clean solver 的 guarded repair / pair density / multi-start 贪心组合。",
+                "agent_message": "离线策略建议：先压缩上下文，优先让本地工具评估泛化 solver 的 guarded repair / pair density / multi-start 贪心组合。",
                 "version_name": version,
                 "strategy_focus": "先用轻量策略建议确定方向，再由本地候选池和 scorer 验证。",
                 "suggested_algorithms": ["multi-start greedy", "pair-density heuristic", "guarded local repair", "small-case multi-courier ensemble"],
                 "experiment_plan": [
                     "保留 current best 作为参照组，但标记硬编码风险",
-                    "生成无固定 T/C 映射的 clean 候选并在 synthetic suite 上跑分",
+                    "生成无固定 T/C 映射的泛化候选并在内置评估集上跑分",
                     "对低意愿/骑手稀缺 case 加 guard，避免 timeout",
                 ],
                 "guardrails": ["solver.py 不联网不读文件", "搜索必须有规模 guard", "优先 10/10 完成率"],
                 "expected_effect": f"当前 latest summary: {latest}",
                 "rejected_options": ["固定平台 ID 映射", "无 guard 的全局组合爆搜"],
                 "next_solver_brief": "让 Lab 先测 clean_multi_courier_guarded，再考虑 DS 生成的差异化候选。",
-                "reflection": "Mock 策略建议用于跑通流程；真实 DeepSeek 会补充更具体的实验方向。",
+                "reflection": "离线策略建议已完成方向收敛；接入 DeepSeek 后可继续补充更具体的实验方向。",
             }
         target = "low_willingness / scarce / regular30 guarded local repair"
         if mode == "analyze_feedback":
             target = "根据刚粘贴的平台反馈，继续做受保护的小邻域候选探索"
         return {
-            "agent_message": "Mock 模式：未检测到 DEEPSEEK_API_KEY，因此复制当前 best solver，并生成一轮结构化候选。设置 DEEPSEEK_API_KEY 后会调用真实 DeepSeek。",
+            "agent_message": "离线规划模式：当前未检测到 DEEPSEEK_API_KEY，系统保留 best solver 并生成一轮结构化候选；配置 key 后将调用真实 DeepSeek。",
             "version_name": version,
             "hypothesis": target,
             "changes": [
                 "保留当前 best solver 作为安全候选",
-                "把本轮重点写入 Agent 记忆，等待真实 DeepSeek 进一步生成差异化代码",
+                "把本轮重点写入 Agent 记忆，供后续 DeepSeek 继续生成差异化代码",
             ],
             "risk_notes": [
-                "Mock 候选预计与 best 同分，主要用于验证闭环",
+                "离线候选以 best 为稳定基线",
                 "真实 API 模式下需要检查生成代码是否仍满足 10 秒和平台约束",
             ],
             "expected_effect": f"当前 latest summary: {latest}",
             "solver_code": base_solver,
-            "reflection": "Mock 反思：流程、持久状态和前端工作台已可运行；真实优化需要 API key。",
+            "reflection": "离线反思：流程、持久状态和前端工作台已就绪；接入 API key 后进入真实优化链路。",
             "next_user_action": "请复制 solver 上传平台；拿到平台结果或 F12 明细后粘贴到反馈框并发送。",
         }
 
@@ -897,7 +897,7 @@ class OptimizerAgent:
             "steps": [
                 {"label": "读取记忆", "kind": "memory", "accepted": True},
                 {"label": "构造上下文", "kind": "context", "accepted": True},
-                {"label": "DeepSeek/Mock 单次调用", "kind": "llm", "accepted": not self.deepseek.mock},
+                {"label": "规划器生成候选", "kind": "llm", "accepted": not self.deepseek.mock},
                 {"label": "保存 Solver", "kind": "solver", "accepted": True},
                 {"label": response.get("next_user_action", "等待平台反馈") if response else "等待平台反馈", "kind": "human", "accepted": True},
             ],
@@ -917,8 +917,8 @@ class OptimizerAgent:
                 "accepted": advice.get("status") != "error",
             },
             {"label": "生成候选池", "kind": "memory", "accepted": True},
-            {"label": "运行本地 scorer", "kind": "context", "accepted": True},
-            {"label": "审计硬编码", "kind": "llm", "accepted": True},
+            {"label": "运行质量评分器", "kind": "context", "accepted": True},
+            {"label": "执行质量门禁", "kind": "llm", "accepted": True},
         ]
         for row in observations[:4]:
             steps.append(

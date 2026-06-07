@@ -7,7 +7,7 @@
   "chat": [
     {
       "role": "agent",
-      "content": "Mock 模式：未检测到 DEEPSEEK_API_KEY，因此复制当前 best solver，并生成一轮结构化候选。设置 DEEPSEEK_API_KEY 后会调用真实 DeepSeek。",
+      "content": "离线规划模式：未检测到 DEEPSEEK_API_KEY，系统保留当前 best solver，并生成一轮结构化候选。设置 DEEPSEEK_API_KEY 后会调用真实 DeepSeek。",
       "time": "2026-06-07T19:48:31+08:00"
     },
     {
