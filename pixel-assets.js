@@ -1,0 +1,83 @@
+window.PIXEL_ASSETS = {
+  fairy: {
+    palette: {
+      A: "#050811",
+      B: "#62dfff",
+      C: "#4f79ff",
+      D: "#f5f7ff",
+      F: "#f4fbff",
+      G: "#9b83ff",
+      W: "#aaf4ff",
+      X: "#5fd5ff",
+    },
+    frames: [
+      [
+        "....AA....AA....",
+        "...AWWA..AWWA...",
+        "..AWWWWAAWWWWA..",
+        ".AWWWWABBAWWWWA.",
+        ".AWWWABFFBAWWWA.",
+        "..AWWABFFBAWWA..",
+        "...AABBBBBBAA...",
+        ".....ABBBBB.....",
+        "....ABCCCCBA....",
+        "...ABCCCCCCBA...",
+        "...ABCCCCCCBA...",
+        "....ACC..CCA....",
+        "....AFF..FFA....",
+        "................",
+      ],
+      [
+        "................",
+        "................",
+        "...AA......AA...",
+        "..AXXA....AXXA..",
+        "..AXXXABBAXXXA..",
+        "...AXABFFBAXA...",
+        "...AABBBBBBAA...",
+        ".....ABBBBB.....",
+        "....ABCCCCBA....",
+        "...ABCCCCCCBA...",
+        "...ABCCCCCCBA...",
+        "....ACC..CCA....",
+        "....AFF..FFA....",
+        "................",
+      ],
+    ],
+  },
+  coin: {
+    palette: {
+      A: "#050811",
+      B: "#ffd15c",
+      C: "#fff0a6",
+      D: "#b47a20",
+    },
+    rows: [
+      "..AAAA..",
+      ".ABBBBA.",
+      "ABCCCBBA",
+      "ABCBDBBA",
+      "ABCCCBBA",
+      ".ABBBBA.",
+      "..AAAA..",
+    ],
+  },
+  baskets: {
+    cost: {
+      palette: { A: "#050811", B: "#80c9ff", C: "#1f6ed2", D: "#f5f7ff" },
+      rows: ["........", ".AAAAAA.", "ABBBBBBA", "ACCCCCCA", "ACDDDDCA", "ACCCCCCA", ".AAAAAA.", "........"],
+    },
+    will: {
+      palette: { A: "#050811", B: "#78f0a0", C: "#228a55", D: "#f5f7ff" },
+      rows: ["........", "..AA....", ".ABBA...", "ABDBBA..", ".ABBBBA.", "..ABBA..", "...AA...", "........"],
+    },
+    pair: {
+      palette: { A: "#050811", B: "#ff9a90", C: "#b94a4a", D: "#f5f7ff" },
+      rows: ["........", ".AA..AA.", "ABBAABBA", "ABDDDBBA", "ABCCCCBA", ".ABCCBA.", "..AAAA..", "........"],
+    },
+    explore: {
+      palette: { A: "#050811", B: "#ffd15c", C: "#c99724", D: "#f5f7ff" },
+      rows: ["...AA...", "..ABBA..", ".ABDCBA.", "ABCCCCBA", ".ABCCBA.", "..ABBA..", "...AA...", "........"],
+    },
+  },
+};

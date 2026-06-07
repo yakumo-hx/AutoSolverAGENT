@@ -1,0 +1,1019 @@
+{
+  "latest_run_id": "ds_20260607_235218_solver_generation",
+  "runs": [
+    {
+      "id": "ds_20260607_215050_strategy_advice",
+      "kind": "strategy_advice",
+      "label": "策略建议 strategy_advice_008_20260607_215050",
+      "model": "deepseek-v4-pro",
+      "mock_mode": false,
+      "status": "completed",
+      "started_at": "2026-06-07T21:50:50+08:00",
+      "first_token_at": "2026-06-07T21:50:53+08:00",
+      "first_token_ms": 3000.6,
+      "finished_at": "2026-06-07T21:51:33+08:00",
+      "elapsed_ms": 42738.1,
+      "chunk_count": 34,
+      "output_chars": 1420,
+      "reasoning_chars": 3118,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 14202,
+        "completion_tokens": 1778,
+        "total_tokens": 15980,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1270
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 14202
+      },
+      "request_summary": {
+        "mode": "strategy_advice",
+        "stream": true,
+        "context_chars": 35570,
+        "max_tokens": 2400,
+        "timeout_s": 75
+      },
+      "events": [
+        {
+          "time": "2026-06-07T21:50:50+08:00",
+          "stage": "begin",
+          "message": "策略建议 strategy_advice_008_20260607_215050",
+          "status": "started"
+        },
+        {
+          "time": "2026-06-07T21:50:50+08:00",
+          "stage": "request",
+          "message": "POST chat/completions timeout=75s max_tokens=2400"
+        },
+        {
+          "time": "2026-06-07T21:50:53+08:00",
+          "stage": "first_token",
+          "message": "3000.6 ms",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T21:51:33+08:00",
+          "stage": "done_signal",
+          "message": "[DONE]",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T21:51:33+08:00",
+          "stage": "finish",
+          "message": "parsed json in 42733.4 ms",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "id": "ds_20260607_215303_strategy_advice",
+      "kind": "strategy_advice",
+      "label": "Lab 策略建议 v008_lab_20260607_215303",
+      "model": "deepseek-v4-pro",
+      "mock_mode": false,
+      "status": "completed",
+      "started_at": "2026-06-07T21:53:03+08:00",
+      "first_token_at": "2026-06-07T21:53:07+08:00",
+      "first_token_ms": 4014.0,
+      "finished_at": "2026-06-07T21:54:01+08:00",
+      "elapsed_ms": 58181.2,
+      "chunk_count": 60,
+      "output_chars": 1782,
+      "reasoning_chars": 3178,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 3340,
+        "completion_tokens": 2188,
+        "total_tokens": 5528,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1314
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 3340
+      },
+      "request_summary": {
+        "mode": "strategy_advice",
+        "stream": true,
+        "context_chars": 7720,
+        "max_tokens": 2400,
+        "timeout_s": 75
+      },
+      "events": [
+        {
+          "time": "2026-06-07T21:53:03+08:00",
+          "stage": "begin",
+          "message": "Lab 策略建议 v008_lab_20260607_215303",
+          "status": "started"
+        },
+        {
+          "time": "2026-06-07T21:53:03+08:00",
+          "stage": "request",
+          "message": "POST chat/completions timeout=75s max_tokens=2400"
+        },
+        {
+          "time": "2026-06-07T21:53:07+08:00",
+          "stage": "first_token",
+          "message": "4014.0 ms",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T21:54:01+08:00",
+          "stage": "done_signal",
+          "message": "[DONE]",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T21:54:01+08:00",
+          "stage": "finish",
+          "message": "parsed json in 58175.4 ms",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "id": "ds_20260607_215403_solver_generation",
+      "kind": "solver_generation",
+      "label": "DS Solver 生成 v008_lab_20260607_215303",
+      "model": "deepseek-v4-pro",
+      "mock_mode": false,
+      "status": "interrupted",
+      "started_at": "2026-06-07T21:54:03+08:00",
+      "first_token_at": "2026-06-07T21:54:07+08:00",
+      "first_token_ms": 3639.6,
+      "finished_at": "2026-06-07T22:00:00+08:00",
+      "elapsed_ms": 357048.2,
+      "chunk_count": 0,
+      "output_chars": 0,
+      "reasoning_chars": 31680,
+      "finish_reason": "",
+      "usage": {},
+      "request_summary": {
+        "mode": "agent_lab_candidate",
+        "stream": true,
+        "context_chars": 18015,
+        "max_tokens": 32000,
+        "timeout_s": 180
+      },
+      "events": [
+        {
+          "time": "2026-06-07T21:54:03+08:00",
+          "stage": "begin",
+          "message": "DS Solver 生成 v008_lab_20260607_215303",
+          "status": "started"
+        },
+        {
+          "time": "2026-06-07T21:54:03+08:00",
+          "stage": "request",
+          "message": "POST chat/completions timeout=180s max_tokens=32000"
+        },
+        {
+          "time": "2026-06-07T21:54:07+08:00",
+          "stage": "first_token",
+          "message": "3639.6 ms",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T22:00:00+08:00",
+          "stage": "finish",
+          "message": "server restarted or request cancelled",
+          "status": "interrupted"
+        }
+      ]
+    },
+    {
+      "id": "ds_20260607_220258_strategy_advice",
+      "kind": "strategy_advice",
+      "label": "Lab 策略建议 v008_lab_20260607_220258",
+      "model": "deepseek-v4-flash",
+      "mock_mode": false,
+      "status": "completed",
+      "started_at": "2026-06-07T22:02:58+08:00",
+      "first_token_at": "2026-06-07T22:03:00+08:00",
+      "first_token_ms": 1739.9,
+      "finished_at": "2026-06-07T22:03:20+08:00",
+      "elapsed_ms": 22399.9,
+      "chunk_count": 54,
+      "output_chars": 1841,
+      "reasoning_chars": 1906,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 3340,
+        "completion_tokens": 1640,
+        "total_tokens": 4980,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 804
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 3340
+      },
+      "request_summary": {
+        "mode": "strategy_advice",
+        "stream": true,
+        "context_chars": 7720,
+        "max_tokens": 2400,
+        "timeout_s": 75,
+        "total_timeout_s": 75
+      },
+      "events": [
+        {
+          "time": "2026-06-07T22:02:58+08:00",
+          "stage": "begin",
+          "message": "Lab 策略建议 v008_lab_20260607_220258",
+          "status": "started"
+        },
+        {
+          "time": "2026-06-07T22:02:58+08:00",
+          "stage": "request",
+          "message": "POST chat/completions timeout=75s total=75s max_tokens=2400"
+        },
+        {
+          "time": "2026-06-07T22:03:00+08:00",
+          "stage": "first_token",
+          "message": "1739.9 ms",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T22:03:20+08:00",
+          "stage": "done_signal",
+          "message": "[DONE]",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T22:03:20+08:00",
+          "stage": "finish",
+          "message": "parsed json in 22392.5 ms",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "id": "ds_20260607_220322_solver_generation",
+      "kind": "solver_generation",
+      "label": "DS Solver 生成 v008_lab_20260607_220258",
+      "model": "deepseek-v4-flash",
+      "mock_mode": false,
+      "status": "completed",
+      "started_at": "2026-06-07T22:03:22+08:00",
+      "first_token_at": "2026-06-07T22:03:24+08:00",
+      "first_token_ms": 1976.7,
+      "finished_at": "2026-06-07T22:03:49+08:00",
+      "elapsed_ms": 27222.3,
+      "chunk_count": 156,
+      "output_chars": 9066,
+      "reasoning_chars": 1655,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 6606,
+        "completion_tokens": 3247,
+        "total_tokens": 9853,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 768
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 6606
+      },
+      "request_summary": {
+        "mode": "agent_lab_candidate",
+        "stream": true,
+        "context_chars": 18084,
+        "max_tokens": 32000,
+        "timeout_s": 180,
+        "total_timeout_s": 180
+      },
+      "events": [
+        {
+          "time": "2026-06-07T22:03:22+08:00",
+          "stage": "begin",
+          "message": "DS Solver 生成 v008_lab_20260607_220258",
+          "status": "started"
+        },
+        {
+          "time": "2026-06-07T22:03:22+08:00",
+          "stage": "request",
+          "message": "POST chat/completions timeout=180s total=180s max_tokens=32000"
+        },
+        {
+          "time": "2026-06-07T22:03:24+08:00",
+          "stage": "first_token",
+          "message": "1976.7 ms",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T22:03:49+08:00",
+          "stage": "done_signal",
+          "message": "[DONE]",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T22:03:49+08:00",
+          "stage": "finish",
+          "message": "parsed json in 27204.2 ms",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "id": "ds_20260607_220900_strategy_advice",
+      "kind": "strategy_advice",
+      "label": "Lab 策略建议 v008_lab_20260607_220900",
+      "model": "deepseek-v4-flash",
+      "mock_mode": false,
+      "status": "completed",
+      "started_at": "2026-06-07T22:09:00+08:00",
+      "first_token_at": "2026-06-07T22:09:03+08:00",
+      "first_token_ms": 2851.3,
+      "finished_at": "2026-06-07T22:09:16+08:00",
+      "elapsed_ms": 15544.7,
+      "chunk_count": 41,
+      "output_chars": 1405,
+      "reasoning_chars": 1214,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 3340,
+        "completion_tokens": 1226,
+        "total_tokens": 4566,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 593
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 3340
+      },
+      "request_summary": {
+        "mode": "strategy_advice",
+        "stream": true,
+        "context_chars": 7720,
+        "max_tokens": 2400,
+        "timeout_s": 75,
+        "total_timeout_s": 75
+      },
+      "events": [
+        {
+          "time": "2026-06-07T22:09:00+08:00",
+          "stage": "begin",
+          "message": "Lab 策略建议 v008_lab_20260607_220900",
+          "status": "started"
+        },
+        {
+          "time": "2026-06-07T22:09:00+08:00",
+          "stage": "request",
+          "message": "POST chat/completions timeout=75s total=75s max_tokens=2400"
+        },
+        {
+          "time": "2026-06-07T22:09:03+08:00",
+          "stage": "first_token",
+          "message": "2851.3 ms",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T22:09:16+08:00",
+          "stage": "done_signal",
+          "message": "[DONE]",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T22:09:16+08:00",
+          "stage": "finish",
+          "message": "parsed json in 15538.0 ms",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "id": "ds_20260607_220917_solver_generation",
+      "kind": "solver_generation",
+      "label": "DS Solver 生成 v008_lab_20260607_220900",
+      "model": "deepseek-v4-flash",
+      "mock_mode": false,
+      "status": "completed",
+      "started_at": "2026-06-07T22:09:17+08:00",
+      "first_token_at": "2026-06-07T22:09:21+08:00",
+      "first_token_ms": 3993.6,
+      "finished_at": "2026-06-07T22:09:53+08:00",
+      "elapsed_ms": 35877.9,
+      "chunk_count": 198,
+      "output_chars": 11375,
+      "reasoning_chars": 1700,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 6406,
+        "completion_tokens": 3881,
+        "total_tokens": 10287,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 739
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 6406
+      },
+      "request_summary": {
+        "mode": "agent_lab_candidate",
+        "stream": true,
+        "context_chars": 17663,
+        "max_tokens": 32000,
+        "timeout_s": 180,
+        "total_timeout_s": 180
+      },
+      "events": [
+        {
+          "time": "2026-06-07T22:09:17+08:00",
+          "stage": "begin",
+          "message": "DS Solver 生成 v008_lab_20260607_220900",
+          "status": "started"
+        },
+        {
+          "time": "2026-06-07T22:09:17+08:00",
+          "stage": "request",
+          "message": "POST chat/completions timeout=180s total=180s max_tokens=32000"
+        },
+        {
+          "time": "2026-06-07T22:09:21+08:00",
+          "stage": "first_token",
+          "message": "3993.6 ms",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T22:09:53+08:00",
+          "stage": "done_signal",
+          "message": "[DONE]",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T22:09:53+08:00",
+          "stage": "finish",
+          "message": "parsed json in 35865.7 ms",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "id": "ds_20260607_221417_solver_generation",
+      "kind": "solver_generation",
+      "label": "反馈后生成 Solver",
+      "model": "deepseek-v4-flash",
+      "mock_mode": false,
+      "status": "completed",
+      "started_at": "2026-06-07T22:14:17+08:00",
+      "first_token_at": "2026-06-07T22:14:24+08:00",
+      "first_token_ms": 7088.6,
+      "finished_at": "2026-06-07T22:15:37+08:00",
+      "elapsed_ms": 79832.5,
+      "chunk_count": 698,
+      "output_chars": 45237,
+      "reasoning_chars": 1902,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 47748,
+        "completion_tokens": 11912,
+        "total_tokens": 59660,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 870
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 47748
+      },
+      "request_summary": {
+        "mode": "analyze_feedback",
+        "stream": true,
+        "context_chars": 158135,
+        "max_tokens": 64000,
+        "timeout_s": 180,
+        "total_timeout_s": 180
+      },
+      "events": [
+        {
+          "time": "2026-06-07T22:14:17+08:00",
+          "stage": "begin",
+          "message": "反馈后生成 Solver",
+          "status": "started"
+        },
+        {
+          "time": "2026-06-07T22:14:17+08:00",
+          "stage": "request",
+          "message": "POST chat/completions timeout=180s total=180s max_tokens=64000"
+        },
+        {
+          "time": "2026-06-07T22:14:24+08:00",
+          "stage": "first_token",
+          "message": "7088.6 ms",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T22:15:37+08:00",
+          "stage": "done_signal",
+          "message": "[DONE]",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T22:15:37+08:00",
+          "stage": "finish",
+          "message": "parsed json in 79822.5 ms",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "id": "ds_20260607_222554_solver_generation",
+      "kind": "solver_generation",
+      "label": "反馈后生成 Solver",
+      "model": "deepseek-v4-flash",
+      "mock_mode": false,
+      "status": "completed",
+      "started_at": "2026-06-07T22:25:54+08:00",
+      "first_token_at": "2026-06-07T22:26:01+08:00",
+      "first_token_ms": 7366.3,
+      "finished_at": "2026-06-07T22:27:49+08:00",
+      "elapsed_ms": 114623.1,
+      "chunk_count": 1154,
+      "output_chars": 78217,
+      "reasoning_chars": 1825,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 50334,
+        "completion_tokens": 18936,
+        "total_tokens": 69270,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 848
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 50078
+      },
+      "request_summary": {
+        "mode": "analyze_feedback",
+        "stream": true,
+        "context_chars": 164605,
+        "max_tokens": 64000,
+        "timeout_s": 180,
+        "total_timeout_s": 180
+      },
+      "events": [
+        {
+          "time": "2026-06-07T22:25:54+08:00",
+          "stage": "begin",
+          "message": "反馈后生成 Solver",
+          "status": "started"
+        },
+        {
+          "time": "2026-06-07T22:25:54+08:00",
+          "stage": "request",
+          "message": "POST chat/completions timeout=180s total=180s max_tokens=64000"
+        },
+        {
+          "time": "2026-06-07T22:26:01+08:00",
+          "stage": "first_token",
+          "message": "7366.3 ms",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T22:27:49+08:00",
+          "stage": "done_signal",
+          "message": "[DONE]",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T22:27:49+08:00",
+          "stage": "finish",
+          "message": "parsed json in 114613.6 ms",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "id": "ds_20260607_234159_solver_generation",
+      "kind": "solver_generation",
+      "label": "平台反馈后生成 Solver / run 1",
+      "model": "deepseek-v4-flash",
+      "mock_mode": false,
+      "status": "completed",
+      "started_at": "2026-06-07T23:41:59+08:00",
+      "first_token_at": "2026-06-07T23:42:03+08:00",
+      "first_token_ms": 3976.2,
+      "finished_at": "2026-06-07T23:44:24+08:00",
+      "elapsed_ms": 145496.9,
+      "chunk_count": 1152,
+      "output_chars": 79494,
+      "reasoning_chars": 7907,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 30003,
+        "completion_tokens": 21953,
+        "total_tokens": 51956,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 3573
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 29619
+      },
+      "request_summary": {
+        "mode": "analyze_feedback",
+        "stream": true,
+        "context_chars": 107912,
+        "max_tokens": 64000,
+        "timeout_s": 180,
+        "total_timeout_s": 180
+      },
+      "events": [
+        {
+          "time": "2026-06-07T23:41:59+08:00",
+          "stage": "begin",
+          "message": "平台反馈后生成 Solver / run 1",
+          "status": "started"
+        },
+        {
+          "time": "2026-06-07T23:41:59+08:00",
+          "stage": "request",
+          "message": "POST chat/completions timeout=180s total=180s max_tokens=64000"
+        },
+        {
+          "time": "2026-06-07T23:42:03+08:00",
+          "stage": "first_token",
+          "message": "3976.2 ms",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T23:44:24+08:00",
+          "stage": "done_signal",
+          "message": "[DONE]",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T23:44:24+08:00",
+          "stage": "finish",
+          "message": "parsed json in 145484.8 ms",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "id": "ds_20260607_234629_solver_generation",
+      "kind": "solver_generation",
+      "label": "平台反馈后生成 Solver / run 2",
+      "model": "deepseek-v4-flash",
+      "mock_mode": false,
+      "status": "completed",
+      "started_at": "2026-06-07T23:46:29+08:00",
+      "first_token_at": "2026-06-07T23:46:37+08:00",
+      "first_token_ms": 7078.7,
+      "finished_at": "2026-06-07T23:48:47+08:00",
+      "elapsed_ms": 137918.4,
+      "chunk_count": 1374,
+      "output_chars": 91130,
+      "reasoning_chars": 1891,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 32319,
+        "completion_tokens": 22817,
+        "total_tokens": 55136,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 875
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 31935
+      },
+      "request_summary": {
+        "mode": "analyze_feedback",
+        "stream": true,
+        "context_chars": 113057,
+        "max_tokens": 64000,
+        "timeout_s": 180,
+        "total_timeout_s": 180
+      },
+      "events": [
+        {
+          "time": "2026-06-07T23:46:29+08:00",
+          "stage": "begin",
+          "message": "平台反馈后生成 Solver / run 2",
+          "status": "started"
+        },
+        {
+          "time": "2026-06-07T23:46:29+08:00",
+          "stage": "request",
+          "message": "POST chat/completions timeout=180s total=180s max_tokens=64000"
+        },
+        {
+          "time": "2026-06-07T23:46:37+08:00",
+          "stage": "first_token",
+          "message": "7078.7 ms",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T23:48:47+08:00",
+          "stage": "done_signal",
+          "message": "[DONE]",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T23:48:47+08:00",
+          "stage": "finish",
+          "message": "parsed json in 137902.9 ms",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "id": "ds_20260607_234647_strategy_advice",
+      "kind": "strategy_advice",
+      "label": "Lab 策略建议 v013_lab_20260607_234647",
+      "model": "deepseek-v4-flash",
+      "mock_mode": false,
+      "status": "completed",
+      "started_at": "2026-06-07T23:46:47+08:00",
+      "first_token_at": "2026-06-07T23:46:49+08:00",
+      "first_token_ms": 2129.7,
+      "finished_at": "2026-06-07T23:47:05+08:00",
+      "elapsed_ms": 17535.9,
+      "chunk_count": 41,
+      "output_chars": 1390,
+      "reasoning_chars": 1454,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 5171,
+        "completion_tokens": 1309,
+        "total_tokens": 6480,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 676
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 5171
+      },
+      "request_summary": {
+        "mode": "strategy_advice",
+        "stream": true,
+        "context_chars": 12012,
+        "max_tokens": 2400,
+        "timeout_s": 75,
+        "total_timeout_s": 75
+      },
+      "events": [
+        {
+          "time": "2026-06-07T23:46:47+08:00",
+          "stage": "begin",
+          "message": "Lab 策略建议 v013_lab_20260607_234647",
+          "status": "started"
+        },
+        {
+          "time": "2026-06-07T23:46:47+08:00",
+          "stage": "request",
+          "message": "POST chat/completions timeout=75s total=75s max_tokens=2400"
+        },
+        {
+          "time": "2026-06-07T23:46:49+08:00",
+          "stage": "first_token",
+          "message": "2129.7 ms",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T23:47:05+08:00",
+          "stage": "done_signal",
+          "message": "[DONE]",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T23:47:05+08:00",
+          "stage": "finish",
+          "message": "parsed json in 17526.0 ms",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "id": "ds_20260607_234707_solver_generation",
+      "kind": "solver_generation",
+      "label": "DS Solver 生成 v013_lab_20260607_234647",
+      "model": "deepseek-v4-flash",
+      "mock_mode": false,
+      "status": "completed",
+      "started_at": "2026-06-07T23:47:07+08:00",
+      "first_token_at": "2026-06-07T23:47:09+08:00",
+      "first_token_ms": 2777.0,
+      "finished_at": "2026-06-07T23:48:02+08:00",
+      "elapsed_ms": 55938.0,
+      "chunk_count": 187,
+      "output_chars": 10761,
+      "reasoning_chars": 5398,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 7782,
+        "completion_tokens": 5659,
+        "total_tokens": 13441,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2686
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 7398
+      },
+      "request_summary": {
+        "mode": "agent_lab_candidate",
+        "stream": true,
+        "context_chars": 20812,
+        "max_tokens": 32000,
+        "timeout_s": 180,
+        "total_timeout_s": 180
+      },
+      "events": [
+        {
+          "time": "2026-06-07T23:47:07+08:00",
+          "stage": "begin",
+          "message": "DS Solver 生成 v013_lab_20260607_234647",
+          "status": "started"
+        },
+        {
+          "time": "2026-06-07T23:47:07+08:00",
+          "stage": "request",
+          "message": "POST chat/completions timeout=180s total=180s max_tokens=32000"
+        },
+        {
+          "time": "2026-06-07T23:47:09+08:00",
+          "stage": "first_token",
+          "message": "2777.0 ms",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T23:48:02+08:00",
+          "stage": "done_signal",
+          "message": "[DONE]",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T23:48:02+08:00",
+          "stage": "finish",
+          "message": "parsed json in 55918.3 ms",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "id": "ds_20260607_234928_solver_generation",
+      "kind": "solver_generation",
+      "label": "反馈后生成 Solver",
+      "model": "deepseek-v4-flash",
+      "mock_mode": false,
+      "status": "completed",
+      "started_at": "2026-06-07T23:49:28+08:00",
+      "first_token_at": "2026-06-07T23:49:31+08:00",
+      "first_token_ms": 3445.1,
+      "finished_at": "2026-06-07T23:51:40+08:00",
+      "elapsed_ms": 131769.3,
+      "chunk_count": 1260,
+      "output_chars": 86263,
+      "reasoning_chars": 2480,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 44413,
+        "completion_tokens": 21281,
+        "total_tokens": 65694,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1149
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 44029
+      },
+      "request_summary": {
+        "mode": "analyze_feedback",
+        "stream": true,
+        "context_chars": 146729,
+        "max_tokens": 64000,
+        "timeout_s": 180,
+        "total_timeout_s": 180
+      },
+      "events": [
+        {
+          "time": "2026-06-07T23:49:28+08:00",
+          "stage": "begin",
+          "message": "反馈后生成 Solver",
+          "status": "started"
+        },
+        {
+          "time": "2026-06-07T23:49:28+08:00",
+          "stage": "request",
+          "message": "POST chat/completions timeout=180s total=180s max_tokens=64000"
+        },
+        {
+          "time": "2026-06-07T23:49:31+08:00",
+          "stage": "first_token",
+          "message": "3445.1 ms",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T23:51:40+08:00",
+          "stage": "done_signal",
+          "message": "[DONE]",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T23:51:40+08:00",
+          "stage": "finish",
+          "message": "parsed json in 131756.2 ms",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "id": "ds_20260607_235218_solver_generation",
+      "kind": "solver_generation",
+      "label": "平台反馈后生成 Solver / run 3",
+      "model": "deepseek-v4-flash",
+      "mock_mode": false,
+      "status": "completed",
+      "started_at": "2026-06-07T23:52:18+08:00",
+      "first_token_at": "2026-06-07T23:52:22+08:00",
+      "first_token_ms": 4162.5,
+      "finished_at": "2026-06-07T23:54:10+08:00",
+      "elapsed_ms": 112224.6,
+      "chunk_count": 1184,
+      "output_chars": 81816,
+      "reasoning_chars": 637,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 41425,
+        "completion_tokens": 19221,
+        "total_tokens": 60646,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 302
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 41041
+      },
+      "request_summary": {
+        "mode": "analyze_feedback",
+        "stream": true,
+        "context_chars": 136236,
+        "max_tokens": 64000,
+        "timeout_s": 180,
+        "total_timeout_s": 180
+      },
+      "events": [
+        {
+          "time": "2026-06-07T23:52:18+08:00",
+          "stage": "begin",
+          "message": "平台反馈后生成 Solver / run 3",
+          "status": "started"
+        },
+        {
+          "time": "2026-06-07T23:52:18+08:00",
+          "stage": "request",
+          "message": "POST chat/completions timeout=180s total=180s max_tokens=64000"
+        },
+        {
+          "time": "2026-06-07T23:52:22+08:00",
+          "stage": "first_token",
+          "message": "4162.5 ms",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T23:54:10+08:00",
+          "stage": "done_signal",
+          "message": "[DONE]",
+          "status": "streaming"
+        },
+        {
+          "time": "2026-06-07T23:54:10+08:00",
+          "stage": "finish",
+          "message": "parsed json in 112196.0 ms",
+          "status": "completed"
+        }
+      ]
+    }
+  ]
+}
