@@ -428,9 +428,9 @@ class PlatformResultParser:
             idx = raw.find(case)
             if idx < 0:
                 continue
-            snippet = raw[idx : idx + 260]
-            nums = re.findall(r"\d+(?:\.\d+)?", snippet)
-            score = float(nums[0]) if nums else None
+            snippet = raw[idx + len(case) : idx + len(case) + 260]
+            nums = re.findall(r"\d[\d,]*(?:\.\d+)?", snippet)
+            score = float(nums[0].replace(",", "")) if nums else None
             time_ms = None
             time_match = re.search(r"(\d+)\s*ms", snippet, re.I)
             if time_match:

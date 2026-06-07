@@ -1,20 +1,10 @@
 {
   "status": "PENDING_SUBMISSION",
-  "pending_version": "v151_clean_multi_guard",
-  "pending_solver_path": "solvers/generated/v151_clean_multi_guard.py",
-  "pending_created_at": "2026-06-07T22:27:49+08:00",
+  "pending_version": "v155_retarget_loww_swap",
+  "pending_solver_path": "solvers/generated/v155_retarget_loww_swap.py",
+  "pending_created_at": "2026-06-07T23:54:10+08:00",
   "last_event": "candidate_generated",
   "chat": [
-    {
-      "role": "agent",
-      "content": "离线规划模式：未检测到 DEEPSEEK_API_KEY，系统保留当前 best solver，并生成一轮结构化候选。设置 DEEPSEEK_API_KEY 后会调用真实 DeepSeek。",
-      "time": "2026-06-07T19:48:31+08:00"
-    },
-    {
-      "role": "agent",
-      "content": "已放弃 pending Solver v005_agent_20260607_194831。文件仍保留在 solvers/generated 中。",
-      "time": "2026-06-07T21:16:47+08:00"
-    },
     {
       "role": "agent",
       "content": "Agent Lab 已完成本地工具循环：生成候选、运行脱敏/合成 case、审计硬编码、选择 clean_multi_courier_guarded。",
@@ -99,68 +89,123 @@
       "role": "agent",
       "content": "基于最新反馈，v010（clean rollback）分数退化至906，表明v149的多骑手机制至关重要。下一轮假设：移除硬编码但保留多骑手组合和局部搜索，通过更严格的剪枝保持10/10完成。",
       "time": "2026-06-07T22:27:49+08:00"
+    },
+    {
+      "role": "user",
+      "content": "粘贴了 v151_clean_multi_guard 平台反馈，解析 average=713.17 completed=10/10",
+      "time": "2026-06-07T23:41:58+08:00"
+    },
+    {
+      "role": "agent",
+      "content": "v151_clean_multi_guard not_better: 平均分 713.17 未优于当前 best 712.5276，不更新 best。",
+      "time": "2026-06-07T23:41:58+08:00"
+    },
+    {
+      "role": "agent",
+      "content": "v151 与 best 分数非常接近（713 vs 712.53），瓶颈在 scarce_couriers 和 low_willingness。发现 multi_two_round_solution 因骑手数条件过严，在 scarce case 中被跳过，导致多骑手组合未生效。现修正该条件，并针对 scarce case 精简搜索以防超时。",
+      "time": "2026-06-07T23:44:24+08:00"
+    },
+    {
+      "role": "user",
+      "content": "粘贴了 v152_fix_scarce_entry 平台反馈，解析 average=716.98 completed=10/10",
+      "time": "2026-06-07T23:46:29+08:00"
+    },
+    {
+      "role": "agent",
+      "content": "v152_fix_scarce_entry not_better: 平均分 716.98 未优于当前 best 712.5276，不更新 best。",
+      "time": "2026-06-07T23:46:29+08:00"
+    },
+    {
+      "role": "agent",
+      "content": "Agent Lab 已完成本地工具循环：先请求策略建议，再生成候选、运行脱敏/合成 case、审计硬编码、选择 clean_multi_courier_guarded。",
+      "time": "2026-06-07T23:48:03+08:00"
+    },
+    {
+      "role": "agent",
+      "content": "v152 分数 716.98 略高于 best 712.53，主要在 scarce 上丢失 1 个任务 (39/40)。本轮假设：放宽 multi_two_round_solution 入口让 scarce 也能进入，并增加针对 low_willingness 任务的多骑手补强，同时确保覆盖全部任务。",
+      "time": "2026-06-07T23:48:47+08:00"
+    },
+    {
+      "role": "user",
+      "content": "粘贴了 v153_scarce_loww_boost 平台反馈，解析 average=717.33 completed=10/10",
+      "time": "2026-06-07T23:49:28+08:00"
+    },
+    {
+      "role": "agent",
+      "content": "v153_scarce_loww_boost not_better: 平均分 717.33 未优于当前 best 712.5276，不更新 best。",
+      "time": "2026-06-07T23:49:28+08:00"
+    },
+    {
+      "role": "agent",
+      "content": "v153 平均分 717.33 未优于 best 712.53；scarce 恢复 40/40，但 tiny 退化到 202.41，low_willingness 仍是 1800.86。本轮假设：回归 v151 架构，仅针对 low_willingness/scarce 做微调并避免影响 tiny。",
+      "time": "2026-06-07T23:51:40+08:00"
+    },
+    {
+      "role": "agent",
+      "content": "基于 v153 平台反馈生成 v155_retarget_loww_swap：保留 v151 主架构，针对 low_willingness/scarce 做小范围 retarget 和高成本任务替换；当前等待提交。",
+      "time": "2026-06-07T23:54:10+08:00"
     }
   ],
-  "pending_sha256": "84480B1423732E9FB915EFF047792E32B6E24119915BF3E4D327C0AF45101BDF",
+  "pending_sha256": "C0753FBD6768D0575C7C0A0FBB883E4249142B9CDF23BE5BADE77489E686A958",
   "latest_feedback": {
-    "version": "v010_rollback_clean_v149",
-    "average": 906.6899,
+    "version": "v153_scarce_loww_boost",
+    "average": 717.33,
     "completed": "10/10",
     "decision": "not_better",
-    "reason": "平均分 906.6899 未优于当前 best 712.5276，不更新 best。",
+    "reason": "平均分 717.33 未优于当前 best 712.5276，不更新 best。",
     "cases": {
       "high_noise_seed601": {
-        "score": 703.6403,
+        "score": 501.23,
         "completion": "30/30",
-        "time_ms": 8643.0
+        "time_ms": 6745.0
       },
       "large_seed301": {
-        "score": 943.7877,
+        "score": 662.46,
         "completion": "40/40",
-        "time_ms": 8726.0
+        "time_ms": 8605.0
       },
       "large_seed302": {
-        "score": 905.4334,
+        "score": 629.62,
         "completion": "40/40",
-        "time_ms": 8150.0
+        "time_ms": 6907.0
       },
       "low_willingness_seed501": {
-        "score": 2272.6769,
+        "score": 1800.86,
         "completion": "30/30",
-        "time_ms": 7119.0
+        "time_ms": 7649.0
       },
       "medium_seed201": {
-        "score": 683.9924,
+        "score": 487.72,
         "completion": "30/30",
-        "time_ms": 6965.0
+        "time_ms": 7190.0
       },
       "medium_seed202": {
-        "score": 752.6639,
+        "score": 527.89,
         "completion": "30/30",
-        "time_ms": 8045.0
+        "time_ms": 6773.0
       },
       "medium_seed203": {
-        "score": 709.0988,
+        "score": 499.78,
         "completion": "30/30",
-        "time_ms": 7533.0
+        "time_ms": 7964.0
       },
       "scarce_couriers_seed401": {
-        "score": 1544.4003,
+        "score": 1544.4,
         "completion": "40/40",
-        "time_ms": 9544.0
+        "time_ms": 9427.0
       },
       "small_seed100": {
-        "score": 396.7962,
+        "score": 316.91,
         "completion": "15/15",
-        "time_ms": 3746.0
+        "time_ms": 531.0
       },
       "tiny_seed42": {
-        "score": 154.4095,
+        "score": 202.41,
         "completion": "6/6",
-        "time_ms": 2064.0
+        "time_ms": 3580.0
       }
     },
     "has_error_or_timeout": false,
-    "recorded_at": "2026-06-07T22:25:54+08:00"
+    "recorded_at": "2026-06-07T23:52:18+08:00"
   }
 }
