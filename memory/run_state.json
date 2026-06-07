@@ -1,7 +1,7 @@
 {
   "status": "PENDING_SUBMISSION",
   "pending_version": "v151_clean_multi_guard",
-  "pending_solver_path": "solvers\\generated\\v151_clean_multi_guard.py",
+  "pending_solver_path": "solvers/generated/v151_clean_multi_guard.py",
   "pending_created_at": "2026-06-07T22:27:49+08:00",
   "last_event": "candidate_generated",
   "chat": [

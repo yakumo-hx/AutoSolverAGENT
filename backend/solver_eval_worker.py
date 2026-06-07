@@ -22,6 +22,13 @@ def _load_solver(path: Path):
     return solve
 
 
+def _portable_path(path: Path) -> str:
+    try:
+        return path.resolve().relative_to(Path.cwd().resolve()).as_posix()
+    except ValueError:
+        return f"<LOCAL_PROJECT>/{path.name}"
+
+
 def evaluate(solver_path: Path, suite_path: Path) -> Dict[str, Any]:
     solve = _load_solver(solver_path)
     suite = json.loads(suite_path.read_text(encoding="utf-8"))
@@ -63,7 +70,7 @@ def evaluate(solver_path: Path, suite_path: Path) -> Dict[str, Any]:
 
     average = total_score / len(case_rows) if case_rows else None
     return {
-        "solver_path": str(solver_path),
+        "solver_path": _portable_path(solver_path),
         "case_count": len(case_rows),
         "valid_cases": valid_count,
         "average_score": average,

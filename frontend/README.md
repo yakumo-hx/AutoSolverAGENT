@@ -18,10 +18,10 @@ http://localhost:8027/frontend/index.html
 启动：
 
 ```powershell
-cd E:\Python_project\Hackathon\AutoSolverAGENT_GitHub
+cd <LOCAL_PROJECT>/AutoSolverAGENT_GitHub
 powershell -ExecutionPolicy Bypass -File scripts\run_workbench.ps1
 ```
 
 未配置 `DEEPSEEK_API_KEY` 时会进入离线规划模式，工作台仍保持完整操作链路；配置 key 后执行真实 DeepSeek 调用。
 
-后端会向上查找 `.env`，例如 `E:\Python_project\.env`。网页输入的 token 优先于 `.env`，模型固定 `deepseek-v4-flash`。
+后端会向上查找 `.env`，例如 `<LOCAL_PROJECT>/.env`。网页输入的 token 优先于 `.env`，模型固定 `deepseek-v4-flash`。

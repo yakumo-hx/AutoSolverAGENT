@@ -30,6 +30,8 @@ DeepSeek key 有两种方式：
 
 线上 solver 保持纯函数式提交形态：仅暴露 `solve(input_text)`，无需 DeepSeek、网络访问、文件读取或控制台输出。
 
+历史 best solver 是平台反馈驱动迭代后的最优提交产物，可能包含针对赛题分布的特化策略；hardcode audit 显示其中约 80 处显式 task/courier pair、约 20 个 courier literal。系统同时提供泛化候选和 hardcode audit，用于区分“冲榜 solver”和“泛化 solver”。
+
 ## 真实运行证据
 
 核心证据都在 `logs/`：

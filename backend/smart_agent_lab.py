@@ -137,7 +137,7 @@ class SmartAgentLab:
             "name": candidate.name,
             "source": candidate.source,
             "hypothesis": candidate.hypothesis,
-            "path": str(candidate_path.relative_to(self.root)),
+            "path": candidate_path.relative_to(self.root).as_posix(),
             "sha256": hashlib.sha256(candidate.solver_code.encode("utf-8")).hexdigest().upper(),
             "hardcode_audit": audit,
             "evaluation": evaluation,

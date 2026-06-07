@@ -19,7 +19,7 @@
    - 是。前端读取后端状态和 `memory/log` 数据，展示真实 score、case table、reflection 和 DS monitor。
 
 7. best solver 独立提交
-   - 是。`solver/solver.py` 是独立平台提交入口；不依赖 Agent 或 DeepSeek。
+   - 是。`solver/solver.py` 是独立平台提交入口；不依赖 Agent 或 DeepSeek。历史 best solver 是平台反馈驱动迭代后的最优提交产物，hardcode audit 显示其中约 80 处显式 task/courier pair、约 20 个 courier literal；系统同时提供泛化候选和 hardcode audit，用于区分“冲榜 solver”和“泛化 solver”。
 
 8. README 交付说明
    - 是。`README.md` 包含运行方式、提交 solver、日志证据、验证结果和隐私说明。

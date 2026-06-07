@@ -702,7 +702,7 @@ class OptimizerAgent:
         known = self.known_store.load()
         state = self.state_store.load()
         best = self.best_store.load()
-        base_solver = (self.root / (best.get("path") or "solvers/best/solver.py")).read_text(encoding="utf-8")
+        base_solver = self._read(best.get("path") or "solvers/best/solver.py")
         context = {
             "mode": mode,
             "generated_at": _now(),
@@ -741,7 +741,7 @@ class OptimizerAgent:
     def _build_strategy_context(self, suggested_version: str) -> Dict[str, Any]:
         known = self.known_store.load()
         best = self.best_store.load()
-        base_path = self.root / (best.get("path") or "solvers/best/solver.py")
+        base_path = _project_path(self.root, best.get("path") or "solvers/best/solver.py")
         base_solver = base_path.read_text(encoding="utf-8")
         return {
             "mode": "strategy_advice",
@@ -757,7 +757,7 @@ class OptimizerAgent:
             "score_analysis": self._case_score_analysis(known),
             "recent_agent_outputs": self._recent_agent_outputs(limit=3),
             "base_solver_fingerprint": {
-                "path": str(base_path.relative_to(self.root)),
+                "path": _portable_rel(base_path, self.root),
                 "chars": len(base_solver),
                 "sha256": hashlib.sha256(base_solver.encode("utf-8")).hexdigest().upper(),
                 "has_hardcoded_pairs_hint": bool(re.search(r'\("T\d{4}(?:,T\d{4})?",\s*"C\d{3}"\)', base_solver)),
@@ -795,7 +795,7 @@ class OptimizerAgent:
             {
                 "status": "PENDING_SUBMISSION",
                 "pending_version": version,
-                "pending_solver_path": str(out_path.relative_to(self.root)),
+                "pending_solver_path": _portable_rel(out_path, self.root),
                 "pending_created_at": _now(),
                 "pending_sha256": sha,
                 "last_event": "candidate_generated",
@@ -980,7 +980,7 @@ class OptimizerAgent:
             solver_code = data.pop("solver_code", "")
             data["solver_code_chars"] = len(solver_code)
             data["solver_code_sha256"] = hashlib.sha256(solver_code.encode("utf-8")).hexdigest().upper() if solver_code else data.get("solver_sha256")
-            data["file"] = str(path.relative_to(self.root))
+            data["file"] = _portable_rel(path, self.root)
             outputs.append(data)
         return outputs
 
@@ -994,7 +994,7 @@ class OptimizerAgent:
             feedbacks.append(
                 {
                     "version": path.stem,
-                    "file": str(path.relative_to(self.root)),
+                    "file": _portable_rel(path, self.root),
                     "chars": len(raw),
                     "excerpt": raw[:4000],
                 }
@@ -1008,7 +1008,7 @@ class OptimizerAgent:
         rows: List[Dict[str, str]] = []
         for path in sorted(root.glob("*.md"), key=lambda p: p.stat().st_mtime, reverse=True)[:limit]:
             text = path.read_text(encoding="utf-8", errors="replace")
-            rows.append({"version": path.stem, "file": str(path.relative_to(self.root)), "excerpt": text[:1200]})
+            rows.append({"version": path.stem, "file": _portable_rel(path, self.root), "excerpt": text[:1200]})
         return rows
 
     def _case_score_analysis(self, known: Dict[str, Any]) -> Dict[str, Any]:
@@ -1078,12 +1078,12 @@ class OptimizerAgent:
         )
 
     def _read(self, rel_path: str) -> str:
-        return (self.root / rel_path).read_text(encoding="utf-8")
+        return _project_path(self.root, rel_path).read_text(encoding="utf-8")
 
     def _read_optional(self, rel_path: Optional[str]) -> str:
         if not rel_path:
             return ""
-        path = self.root / rel_path
+        path = _project_path(self.root, rel_path)
         return path.read_text(encoding="utf-8") if path.exists() else ""
 
 
@@ -1097,9 +1097,11 @@ def _load_dotenv_upward(root: Path) -> List[str]:
         path = directory / ".env"
         if path not in candidates:
             candidates.append(path)
-    explicit = Path("E:/Python_project/.env")
-    if explicit not in candidates:
-        candidates.append(explicit)
+    explicit = os.environ.get("AUTOSOLVER_DOTENV", "").strip()
+    if explicit:
+        explicit_path = Path(explicit).expanduser()
+        if explicit_path not in candidates:
+            candidates.append(explicit_path)
 
     loaded: List[str] = []
     for path in candidates:
@@ -1122,10 +1124,39 @@ def _load_dotenv_upward(root: Path) -> List[str]:
                 if (value.startswith('"') and value.endswith('"')) or (value.startswith("'") and value.endswith("'")):
                     value = value[1:-1]
                 os.environ.setdefault(key, value)
-            loaded.append(str(path))
+            loaded.append(_public_local_path(path, root))
         except Exception:
             continue
     return loaded
+
+
+def _normalize_rel_path(rel_path: str) -> str:
+    return str(rel_path).replace("\\", "/").lstrip("/")
+
+
+def _project_path(root: Path, rel_path: str) -> Path:
+    clean = _normalize_rel_path(rel_path)
+    path = (root / clean).resolve()
+    root_resolved = root.resolve()
+    try:
+        path.relative_to(root_resolved)
+    except ValueError as exc:
+        raise ValueError(f"path escapes project root: {rel_path}") from exc
+    return path
+
+
+def _portable_rel(path: Path, root: Path) -> str:
+    return path.resolve().relative_to(root.resolve()).as_posix()
+
+
+def _public_local_path(path: Path, root: Path) -> str:
+    resolved = path.resolve()
+    try:
+        return f"<LOCAL_PROJECT>/{resolved.relative_to(root.resolve()).as_posix()}"
+    except ValueError:
+        if resolved.name == ".env":
+            return "<LOCAL_PROJECT>/.env"
+        return f"<LOCAL_PROJECT>/{resolved.name}"
 
 
 def _safe_name(name: str) -> str:

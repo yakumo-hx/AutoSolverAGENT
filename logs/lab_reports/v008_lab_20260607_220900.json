@@ -75,7 +75,7 @@
       "model": "deepseek-v4-flash",
       "token_source": "env",
       "env_files": [
-        "E:\\Python_project\\.env"
+        "<LOCAL_PROJECT>/.env"
       ],
       "monitor_id": "ds_20260607_220900_strategy_advice",
       "stream": true,
@@ -146,7 +146,7 @@
       "name": "current_best_reference",
       "source": "best_solver",
       "hypothesis": "当前 best 作为参照组；如果它赢但有硬编码，报告会明确标红。",
-      "path": "solvers\\lab\\v008_lab_20260607_220900\\01_current_best_reference.py",
+      "path": "solvers/lab/v008_lab_20260607_220900/01_current_best_reference.py",
       "sha256": "766972C060513589B7D306499AD0828C2B5886181DCC2014F5197A6E0B531423",
       "hardcode_audit": {
         "explicit_pair_count": 80,
@@ -166,7 +166,7 @@
         "risk": "high"
       },
       "evaluation": {
-        "solver_path": "E:\\Python_project\\Hackathon\\AutoSolverAgentShowcase\\solvers\\lab\\v008_lab_20260607_220900\\01_current_best_reference.py",
+        "solver_path": "<LOCAL_PROJECT>/AutoSolverAgentShowcase/solvers/lab/v008_lab_20260607_220900/01_current_best_reference.py",
         "case_count": 5,
         "valid_cases": 5,
         "average_score": 1035.088108518648,
@@ -237,7 +237,7 @@
       "name": "clean_greedy_portfolio",
       "source": "local_template",
       "hypothesis": "去掉固定 ID，使用多排序贪心组合和局部替换。",
-      "path": "solvers\\lab\\v008_lab_20260607_220900\\02_clean_greedy_portfolio.py",
+      "path": "solvers/lab/v008_lab_20260607_220900/02_clean_greedy_portfolio.py",
       "sha256": "E7200680D863319EE970D2587EB41BCD482E65F24ACD336F3FFD6309DBA5E758",
       "hardcode_audit": {
         "explicit_pair_count": 0,
@@ -248,7 +248,7 @@
         "risk": "low"
       },
       "evaluation": {
-        "solver_path": "E:\\Python_project\\Hackathon\\AutoSolverAgentShowcase\\solvers\\lab\\v008_lab_20260607_220900\\02_clean_greedy_portfolio.py",
+        "solver_path": "<LOCAL_PROJECT>/AutoSolverAgentShowcase/solvers/lab/v008_lab_20260607_220900/02_clean_greedy_portfolio.py",
         "case_count": 5,
         "valid_cases": 5,
         "average_score": 1058.171143676,
@@ -319,7 +319,7 @@
       "name": "clean_pair_density",
       "source": "local_template",
       "hypothesis": "优先 pair/bundle 的收益密度，适合骑手较少或合单收益明显的 case。",
-      "path": "solvers\\lab\\v008_lab_20260607_220900\\03_clean_pair_density.py",
+      "path": "solvers/lab/v008_lab_20260607_220900/03_clean_pair_density.py",
       "sha256": "9BDD49CC2CDA2552EA0C81435E3DDC0912E0A1027EC347F7A6ACDD7D52D974BF",
       "hardcode_audit": {
         "explicit_pair_count": 0,
@@ -330,7 +330,7 @@
         "risk": "low"
       },
       "evaluation": {
-        "solver_path": "E:\\Python_project\\Hackathon\\AutoSolverAgentShowcase\\solvers\\lab\\v008_lab_20260607_220900\\03_clean_pair_density.py",
+        "solver_path": "<LOCAL_PROJECT>/AutoSolverAgentShowcase/solvers/lab/v008_lab_20260607_220900/03_clean_pair_density.py",
         "case_count": 5,
         "valid_cases": 5,
         "average_score": 1058.171143676,
@@ -401,7 +401,7 @@
       "name": "clean_multi_courier_guarded",
       "source": "local_template",
       "hypothesis": "对低意愿单任务尝试 guarded multi-courier，提升完成概率。",
-      "path": "solvers\\lab\\v008_lab_20260607_220900\\04_clean_multi_courier_guarded.py",
+      "path": "solvers/lab/v008_lab_20260607_220900/04_clean_multi_courier_guarded.py",
       "sha256": "7A9E1C0B4AB226D1B86A9220828B6476646C2BD7AB9AE8CE6CD590F675DF18B2",
       "hardcode_audit": {
         "explicit_pair_count": 0,
@@ -412,7 +412,7 @@
         "risk": "low"
       },
       "evaluation": {
-        "solver_path": "E:\\Python_project\\Hackathon\\AutoSolverAgentShowcase\\solvers\\lab\\v008_lab_20260607_220900\\04_clean_multi_courier_guarded.py",
+        "solver_path": "<LOCAL_PROJECT>/AutoSolverAgentShowcase/solvers/lab/v008_lab_20260607_220900/04_clean_multi_courier_guarded.py",
         "case_count": 5,
         "valid_cases": 5,
         "average_score": 1043.1655694932774,
@@ -483,7 +483,7 @@
       "name": "v150_ls_bottleneck",
       "source": "deepseek",
       "hypothesis": "对低意愿和稀缺骑手场景，通过小范围穷举多骑手组合（1~3人）并配合局部搜索，可以在不超时的情况下找到质量更高的解，从而降低平均惩罚分。",
-      "path": "solvers\\lab\\v008_lab_20260607_220900\\05_v150_ls_bottleneck.py",
+      "path": "solvers/lab/v008_lab_20260607_220900/05_v150_ls_bottleneck.py",
       "sha256": "989C9C805D32097C25364F95CCB7079CF249AC93918074F7740102E9EECE6FFF",
       "hardcode_audit": {
         "explicit_pair_count": 0,
@@ -494,7 +494,7 @@
         "risk": "low"
       },
       "evaluation": {
-        "solver_path": "E:\\Python_project\\Hackathon\\AutoSolverAgentShowcase\\solvers\\lab\\v008_lab_20260607_220900\\05_v150_ls_bottleneck.py",
+        "solver_path": "<LOCAL_PROJECT>/AutoSolverAgentShowcase/solvers/lab/v008_lab_20260607_220900/05_v150_ls_bottleneck.py",
         "case_count": 5,
         "valid_cases": 5,
         "average_score": 1079.3229650207118,
@@ -563,7 +563,7 @@
   ],
   "chosen": {
     "name": "clean_multi_courier_guarded",
-    "path": "solvers\\lab\\v008_lab_20260607_220900\\04_clean_multi_courier_guarded.py",
+    "path": "solvers/lab/v008_lab_20260607_220900/04_clean_multi_courier_guarded.py",
     "sha256": "7A9E1C0B4AB226D1B86A9220828B6476646C2BD7AB9AE8CE6CD590F675DF18B2",
     "selection_score": 1043.1655694932774,
     "average_score": 1043.1655694932774,
