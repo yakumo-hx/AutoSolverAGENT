@@ -2,11 +2,13 @@
 
 像素风配送算法优化 Agent 工作台。这个仓库是面向交付的完整版本：包含核心代码、可单独提交的 best solver、最新 Agent 候选、结构化平台分数、DeepSeek 真实调用记录、Agent 反思和在线静态回放页。
 
-在线 Replay Dashboard：
+## 项目入口
 
-```text
-https://yakumo-hx.github.io/AutoSolverAGENT/
-```
+- 在线静态 Replay Dashboard：[https://yakumo-hx.github.io/AutoSolverAGENT/](https://yakumo-hx.github.io/AutoSolverAGENT/)
+- 演示视频：[Bilibili BV1ErE86aEa3](https://www.bilibili.com/video/BV1ErE86aEa3/?vd_source=39ce2caac3a78499b149edf249345f1d)
+- 可提交 best solver：[solver/solver.py](solver/solver.py)
+
+评委可直接打开在线静态 Replay Dashboard 查看完整 Agent 回放。该页面无需后端、无需 DeepSeek API key，只读取仓库导出的静态 JSON 数据。
 
 ## 快速运行
 
