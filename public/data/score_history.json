@@ -1,0 +1,56 @@
+[
+  {
+    "version": "v1_baseline",
+    "average": 911.4898,
+    "completed": "10/10",
+    "decision": "baseline"
+  },
+  {
+    "version": "v15_formal_multi2_marginal",
+    "average": 719.6302,
+    "completed": "10/10",
+    "decision": "accepted_then_superseded"
+  },
+  {
+    "version": "v109_formal_guarded_triple_regular_only",
+    "average": 712.5276,
+    "completed": "10/10",
+    "decision": "accepted_then_preserved"
+  },
+  {
+    "version": "v149_probe_tiny_budget400k",
+    "average": 712.5276,
+    "completed": "10/10",
+    "decision": "best"
+  },
+  {
+    "version": "v008_lab_20260607_220900",
+    "average": 907.3511,
+    "completed": "10/10",
+    "decision": "not_better"
+  },
+  {
+    "version": "v010_rollback_clean_v149",
+    "average": 906.6899,
+    "completed": "10/10",
+    "decision": "not_better"
+  },
+  {
+    "version": "v151_clean_multi_guard",
+    "average": 713.17,
+    "completed": "10/10",
+    "decision": "not_better"
+  },
+  {
+    "version": "v152_fix_scarce_entry",
+    "average": 716.98,
+    "completed": "10/10",
+    "decision": "not_better"
+  },
+  {
+    "version": "v153_scarce_loww_boost",
+    "average": 717.33,
+    "completed": "10/10",
+    "decision": "not_better"
+  }
+]

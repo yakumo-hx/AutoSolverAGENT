@@ -1,0 +1,66 @@
+[
+  {
+    "version": "v15_formal_multi2_marginal",
+    "decision": "accepted_then_superseded",
+    "average": 719.6302,
+    "completed": "10/10",
+    "reason": "多骑手边际收益建模是重大突破，将平均分压到 720 附近。",
+    "text": "# Reflection\n\n## Version\nv15_formal_multi2_marginal\n\n## Decision\naccepted_then_superseded\n\n## Reason\n多骑手边际收益建模是重大突破，将平均分压到 720 附近。\n\n## Average\n719.6302\n\n## Completed\n10/10\n\n## Cases\n--"
+  },
+  {
+    "version": "v109_formal_guarded_triple_regular_only",
+    "decision": "accepted_then_preserved",
+    "average": 712.5276,
+    "completed": "10/10",
+    "reason": "guarded triple rebalance 改善 regular cases，同时保护 tiny/scarce。",
+    "text": "# Reflection\n\n## Version\nv109_formal_guarded_triple_regular_only\n\n## Decision\naccepted_then_preserved\n\n## Reason\nguarded triple rebalance 改善 regular cases，同时保护 tiny/scarce。\n\n## Average\n712.5276\n\n## Completed\n10/10\n\n## Cases\n--"
+  },
+  {
+    "version": "v149_probe_tiny_budget400k",
+    "decision": "best",
+    "average": 712.5276,
+    "completed": "10/10",
+    "reason": "保持 v109 最好分，并确认 tiny exact 400k 预算稳定。",
+    "text": "# Reflection\n\n## Version\nv149_probe_tiny_budget400k\n\n## Decision\nbest\n\n## Reason\n保持 v109 最好分，并确认 tiny exact 400k 预算稳定。\n\n## Average\n712.5276\n\n## Completed\n10/10\n\n## Cases\n- high_noise_seed601: score=501.2305 completion=30/30 time_ms=6166\n- large_seed301: score=662.4562 completion=40/40 time_ms=8343\n- large_seed302: score=629.6188 completion=40/40 time_ms=6855\n- low_willingness_seed501: score=1800.8571 completion=30/30 time_ms=7417\n- medium_seed201: score=487.7247 completion=30/30 time_ms=6604\n- medium_seed202: score=527.8889 completion=30/30 time_ms=6729\n- medium_seed203: score=499.7759 completion=30/30 time_ms=7484\n- scarce_couriers_seed401: score=1544.4003 completion=40/40 time_ms=8948\n- small_seed100: score=316.914 completion=15/15 time_ms=477\n- tiny_seed42: score=154.4095 completion=6/6 time_ms=4556"
+  },
+  {
+    "version": "v008_lab_20260607_220900",
+    "decision": "not_better",
+    "average": 907.3511,
+    "completed": "10/10",
+    "reason": "平均分 907.3511 未优于当前 best 712.5276，不更新 best。",
+    "text": "# Reflection\n\n## Version\nv008_lab_20260607_220900\n\n## Decision\nnot_better\n\n## Reason\n平均分 907.3511 未优于当前 best 712.5276，不更新 best。\n\n## Average\n907.3511\n\n## Completed\n10/10\n\n## Cases\n- high_noise_seed601: score=715.0484 completion=30/30 time_ms=2830.0\n- large_seed301: score=961.4757 completion=40/40 time_ms=2687.0\n- large_seed302: score=913.3302 completion=40/40 time_ms=2635.0\n- low_willingness_seed501: score=2102.2982 completion=22/30 time_ms=2134.0\n- medium_seed201: score=690.5622 completion=30/30 time_ms=2024.0\n- medium_seed202: score=764.2358 completion=30/30 time_ms=2242.0\n- medium_seed203: score=720.4748 completion=30/30 time_ms=2155.0\n- scarce_couriers_seed401: score=1588.9384 completion=39/40 time_ms=1045.0\n- small_seed100: score=414.7386 completion=15/15 time_ms=505.0\n- tiny_seed42: score=202.4085 completion=6/6 time_ms=88.0"
+  },
+  {
+    "version": "v010_rollback_clean_v149",
+    "decision": "not_better",
+    "average": 906.6899,
+    "completed": "10/10",
+    "reason": "平均分 906.6899 未优于当前 best 712.5276，不更新 best。",
+    "text": "# Reflection\n\n## Version\nv010_rollback_clean_v149\n\n## Decision\nnot_better\n\n## Reason\n平均分 906.6899 未优于当前 best 712.5276，不更新 best。\n\n## Average\n906.6899\n\n## Completed\n10/10\n\n## Cases\n- high_noise_seed601: score=703.6403 completion=30/30 time_ms=8643.0\n- large_seed301: score=943.7877 completion=40/40 time_ms=8726.0\n- large_seed302: score=905.4334 completion=40/40 time_ms=8150.0\n- low_willingness_seed501: score=2272.6769 completion=30/30 time_ms=7119.0\n- medium_seed201: score=683.9924 completion=30/30 time_ms=6965.0\n- medium_seed202: score=752.6639 completion=30/30 time_ms=8045.0\n- medium_seed203: score=709.0988 completion=30/30 time_ms=7533.0\n- scarce_couriers_seed401: score=1544.4003 completion=40/40 time_ms=9544.0\n- small_seed100: score=396.7962 completion=15/15 time_ms=3746.0\n- tiny_seed42: score=154.4095 completion=6/6 time_ms=2064.0"
+  },
+  {
+    "version": "v151_clean_multi_guard",
+    "decision": "not_better",
+    "average": 713.17,
+    "completed": "10/10",
+    "reason": "平均分 713.17 未优于当前 best 712.5276，不更新 best。",
+    "text": "# Reflection\n\n## Version\nv151_clean_multi_guard\n\n## Decision\nnot_better\n\n## Reason\n平均分 713.17 未优于当前 best 712.5276，不更新 best。\n\n## Average\n713.17\n\n## Completed\n10/10\n\n## Cases\n- high_noise_seed601: score=503.44 completion=30/30 time_ms=6716.0\n- large_seed301: score=668.09 completion=40/40 time_ms=8571.0\n- large_seed302: score=627.71 completion=40/40 time_ms=8653.0\n- low_willingness_seed501: score=1800.86 completion=30/30 time_ms=6380.0\n- medium_seed201: score=485.57 completion=30/30 time_ms=6418.0\n- medium_seed202: score=529.59 completion=30/30 time_ms=9274.0\n- medium_seed203: score=500.51 completion=30/30 time_ms=9603.0\n- scarce_couriers_seed401: score=1544.4 completion=40/40 time_ms=9948.0\n- small_seed100: score=317.08 completion=15/15 time_ms=590.0\n- tiny_seed42: score=154.41 completion=6/6 time_ms=4089.0"
+  },
+  {
+    "version": "v152_fix_scarce_entry",
+    "decision": "not_better",
+    "average": 716.98,
+    "completed": "10/10",
+    "reason": "平均分 716.98 未优于当前 best 712.5276，不更新 best。",
+    "text": "# Reflection\n\n## Version\nv152_fix_scarce_entry\n\n## Decision\nnot_better\n\n## Reason\n平均分 716.98 未优于当前 best 712.5276，不更新 best。\n\n## Average\n716.98\n\n## Completed\n10/10\n\n## Cases\n- high_noise_seed601: score=501.23 completion=30/30 time_ms=7300.0\n- large_seed301: score=662.46 completion=40/40 time_ms=7948.0\n- large_seed302: score=629.62 completion=40/40 time_ms=7073.0\n- low_willingness_seed501: score=1800.86 completion=30/30 time_ms=7490.0\n- medium_seed201: score=487.72 completion=30/30 time_ms=7348.0\n- medium_seed202: score=527.89 completion=30/30 time_ms=7062.0\n- medium_seed203: score=499.78 completion=30/30 time_ms=7987.0\n- scarce_couriers_seed401: score=1588.94 completion=39/40 time_ms=2659.0\n- small_seed100: score=316.91 completion=15/15 time_ms=529.0\n- tiny_seed42: score=154.41 completion=6/6 time_ms=4687.0"
+  },
+  {
+    "version": "v153_scarce_loww_boost",
+    "decision": "not_better",
+    "average": 717.33,
+    "completed": "10/10",
+    "reason": "平均分 717.33 未优于当前 best 712.5276，不更新 best。",
+    "text": "# Reflection\n\n## Version\nv153_scarce_loww_boost\n\n## Decision\nnot_better\n\n## Reason\n平均分 717.33 未优于当前 best 712.5276，不更新 best。\n\n## Average\n717.33\n\n## Completed\n10/10\n\n## Cases\n- high_noise_seed601: score=501.23 completion=30/30 time_ms=6745.0\n- large_seed301: score=662.46 completion=40/40 time_ms=8605.0\n- large_seed302: score=629.62 completion=40/40 time_ms=6907.0\n- low_willingness_seed501: score=1800.86 completion=30/30 time_ms=7649.0\n- medium_seed201: score=487.72 completion=30/30 time_ms=7190.0\n- medium_seed202: score=527.89 completion=30/30 time_ms=6773.0\n- medium_seed203: score=499.78 completion=30/30 time_ms=7964.0\n- scarce_couriers_seed401: score=1544.4 completion=40/40 time_ms=9427.0\n- small_seed100: score=316.91 completion=15/15 time_ms=531.0\n- tiny_seed42: score=202.41 completion=6/6 time_ms=3580.0"
+  }
+]

@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AutoSolver Agent Replay Dashboard</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="hud">
+        <div class="brand">
+          <span class="tag">STATIC REPLAY DASHBOARD</span>
+          <h1>AutoSolver Agent</h1>
+        </div>
+        <dl class="stats">
+          <div>
+            <dt>BEST</dt>
+            <dd id="bestStat">--</dd>
+          </div>
+          <div>
+            <dt>LATEST</dt>
+            <dd id="latestStat">--</dd>
+          </div>
+          <div>
+            <dt>DS RUNS</dt>
+            <dd id="runStat">--</dd>
+          </div>
+          <div>
+            <dt>STATE</dt>
+            <dd id="stateStat">--</dd>
+          </div>
+        </dl>
+      </header>
+
+      <section class="hero-grid">
+        <section class="scene" aria-label="Agent replay scene">
+          <div class="panel home-panel">
+            <div class="panel-title">AGENT</div>
+            <div class="home-pad"></div>
+            <p id="sceneMessage">loading replay...</p>
+          </div>
+
+          <div class="panel basket-panel">
+            <div class="panel-title">ALGORITHM BASKETS</div>
+            <div class="basket-grid">
+              <div class="basket blue" data-basket="greedy">
+                <span class="basket-art" data-kind="cost"></span>
+                <strong>Greedy</strong>
+              </div>
+              <div class="basket green" data-basket="flow">
+                <span class="basket-art" data-kind="will"></span>
+                <strong>Flow / ILP</strong>
+              </div>
+              <div class="basket red" data-basket="repair">
+                <span class="basket-art" data-kind="pair"></span>
+                <strong>Repair</strong>
+              </div>
+              <div class="basket gold" data-basket="memory">
+                <span class="basket-art" data-kind="explore"></span>
+                <strong>Memory</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel scale-panel">
+            <div class="panel-title">SCORE SCALE</div>
+            <div class="scale">
+              <span class="scale-bar" id="scaleBar"></span>
+              <span class="pan left"></span>
+              <span class="pan right"></span>
+              <span class="post"></span>
+            </div>
+            <strong id="scaleText">WAIT</strong>
+          </div>
+
+          <aside class="panel ledger-panel">
+            <div class="panel-title">MEMORY LEDGER</div>
+            <ol id="ledgerList"></ol>
+          </aside>
+
+          <div class="fairy" id="fairy">
+            <div class="pixel-art" id="fairyArt"></div>
+            <div class="pixel-art coin-art" id="coinArt"></div>
+          </div>
+        </section>
+
+        <aside class="panel replay-panel">
+          <div class="panel-title">REPLAY CONTROL</div>
+          <div class="button-row">
+            <button class="button primary" id="playButton">Play</button>
+            <button class="button" id="stepButton">Step</button>
+            <button class="button" id="resetButton">Reset</button>
+          </div>
+          <div class="progress" id="stepDots"></div>
+          <div class="evidence-grid">
+            <div>
+              <span>Current Candidate</span>
+              <strong id="pendingVersion">--</strong>
+            </div>
+            <div>
+              <span>Completed Cases</span>
+              <strong id="completedCases">--</strong>
+            </div>
+            <div>
+              <span>Error / Timeout</span>
+              <strong id="errorStatus">--</strong>
+            </div>
+            <div>
+              <span>Delta vs Best</span>
+              <strong id="deltaStat">--</strong>
+            </div>
+          </div>
+          <div class="reflection" id="reflectionBox">--</div>
+        </aside>
+      </section>
+
+      <section class="dashboard-grid">
+        <section class="panel chart-panel">
+          <div class="panel-title">SCORE CURVE</div>
+          <div class="chart" id="scoreChart"></div>
+        </section>
+
+        <section class="panel timeline-panel">
+          <div class="panel-title">VERSION TIMELINE</div>
+          <div class="timeline" id="versionTimeline"></div>
+        </section>
+
+        <section class="panel case-panel">
+          <div class="panel-title">CASE LEVEL SCORE</div>
+          <div class="case-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>case</th>
+                  <th>score</th>
+                  <th>done</th>
+                  <th>ms</th>
+                </tr>
+              </thead>
+              <tbody id="caseRows"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel monitor-panel">
+          <div class="panel-title">DEEPSEEK STREAM LOG</div>
+          <div class="monitor-cards">
+            <div><span>Status</span><strong id="dsStatus">--</strong></div>
+            <div><span>Elapsed</span><strong id="dsElapsed">--</strong></div>
+            <div><span>First Token</span><strong id="dsFirst">--</strong></div>
+            <div><span>Chunks</span><strong id="dsChunks">--</strong></div>
+          </div>
+          <div class="events" id="dsEvents"></div>
+        </section>
+      </section>
+
+      <section class="panel solver-panel">
+        <div class="panel-title">SOLVER ARTIFACT</div>
+        <div class="button-row">
+          <button class="button primary" id="showCandidate">Candidate</button>
+          <button class="button" id="showBest">Best Solver</button>
+          <button class="button" id="copySolver">Copy</button>
+          <a class="button link-button" href="./artifacts/best_solver.py" download>Download Best</a>
+        </div>
+        <textarea id="solverText" spellcheck="false" readonly></textarea>
+      </section>
+    </main>
+
+    <script src="./pixel-assets.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

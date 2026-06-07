@@ -1,6 +1,12 @@
 # AutoSolverAGENT
 
-像素风配送算法优化 Agent 工作台。这个仓库是面向交付的完整版本：包含核心代码、可单独提交的 best solver、最新 Agent 候选、结构化平台分数、DeepSeek 真实调用记录和 Agent 反思。
+像素风配送算法优化 Agent 工作台。这个仓库是面向交付的完整版本：包含核心代码、可单独提交的 best solver、最新 Agent 候选、结构化平台分数、DeepSeek 真实调用记录、Agent 反思和在线静态回放页。
+
+在线 Replay Dashboard：
+
+```text
+https://yakumo-hx.github.io/AutoSolverAGENT/
+```
 
 ## 快速运行
 
@@ -25,8 +31,9 @@ DeepSeek key 有两种方式：
 
 - `solver/solver.py`：当前历史 best，可直接单独提交到平台。
 - `solvers/best/solver.py`：同一份历史 best 归档。
-- `solvers/generated/v151_clean_multi_guard.py`：最新 Agent 根据第二轮平台反馈生成的泛化候选。
-- `solvers/generated/v010_rollback_clean_v149.py`：第一轮反馈后的回退候选。
+- `solvers/generated/v155_retarget_loww_swap.py`：当前等待提交的最新 Agent 候选。
+- `solvers/generated/v151_clean_multi_guard.py`：最近最接近 best 的 clean multi-courier 候选。
+- `solvers/generated/v010_rollback_clean_v149.py`：早期反馈后的回退候选。
 
 线上 solver 保持纯函数式提交形态：仅暴露 `solve(input_text)`，无需 DeepSeek、网络访问、文件读取或控制台输出。
 
@@ -34,7 +41,7 @@ DeepSeek key 有两种方式：
 
 ## 真实运行证据
 
-核心证据都在 `logs/`：
+核心证据在 `logs/`、`memory/` 和 `public/data/`：
 
 - `logs/run_manifest.json`：反馈到生成的主证据链。
 - `logs/deepseek_runs_sanitized.json`：真实 DeepSeek 流式调用记录，包含模型、耗时、usage、事件。
@@ -48,10 +55,13 @@ DeepSeek key 有两种方式：
 
 1. `v008_lab_20260607_220900` 平台反馈 `907.3511 / 10/10 / not_better` -> DeepSeek run `ds_20260607_221417_solver_generation` -> 生成 `v010_rollback_clean_v149.py`。
 2. `v010_rollback_clean_v149` 平台反馈 `906.6899 / 10/10 / not_better` -> DeepSeek run `ds_20260607_222554_solver_generation` -> 生成 `v151_clean_multi_guard.py`。
+3. `v151_clean_multi_guard` 平台反馈 `713.17 / 10/10 / not_better` -> DeepSeek run `ds_20260607_234159_solver_generation` -> 生成 `v152_fix_scarce_entry.py`。
+4. `v152_fix_scarce_entry` 平台反馈 `716.98 / 10/10 / not_better` -> DeepSeek run `ds_20260607_234629_solver_generation` -> 生成 `v153_scarce_loww_boost.py`。
+5. `v153_scarce_loww_boost` 平台反馈 `717.33 / 10/10 / not_better` -> DeepSeek run `ds_20260607_235218_solver_generation` -> 生成 `v155_retarget_loww_swap.py`。
 
 ## 前端展示
 
-前端第一屏即为可操作 Agent 工作台。它展示：
+本地前端第一屏即为可操作 Agent 工作台。`public/` 是无需后端的在线静态 Replay Dashboard。两者展示：
 
 - 像素小精灵 Agent 动画
 - 分数曲线
@@ -63,6 +73,12 @@ DeepSeek key 有两种方式：
 - DeepSeek 流式监控面板
 
 界面快照：`demo/screenshots/ds-flash-monitor.png`。
+
+刷新在线静态页数据：
+
+```powershell
+python scripts/build_static_replay.py
+```
 
 ## 质量门禁
 
